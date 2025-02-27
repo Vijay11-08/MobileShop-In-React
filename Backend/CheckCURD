@@ -1,0 +1,280 @@
+---
+
+## **1️⃣ Users API (CRUD)**
+### **📌 Base URL:** `http://localhost:5000/api/users`
+#### **✅ Get All Users**
+- **Method:** `GET`
+- **URL:** `http://localhost:5000/api/users`
+
+#### **✅ Get User by ID**
+- **Method:** `GET`
+- **URL:** `http://localhost:5000/api/users/1`
+
+#### **✅ Register a New User**
+- **Method:** `POST`
+- **URL:** `http://localhost:5000/api/users`
+- **Body (JSON):**
+```json
+{
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "password": "securepassword"
+}
+```
+
+#### **✅ Update User**
+- **Method:** `PUT`
+- **URL:** `http://localhost:5000/api/users/1`
+- **Body (JSON):**
+```json
+{
+    "name": "John Updated",
+    "email": "johnupdated@example.com"
+}
+```
+
+#### **✅ Delete User**
+- **Method:** `DELETE`
+- **URL:** `http://localhost:5000/api/users/1`
+
+---
+
+## **2️⃣ Categories API (CRUD)**
+### **📌 Base URL:** `http://localhost:5000/api/categories`
+#### **✅ Get All Categories**
+- **Method:** `GET`
+- **URL:** `http://localhost:5000/api/categories`
+
+#### **✅ Get Category by ID**
+- **Method:** `GET`
+- **URL:** `http://localhost:5000/api/categories/1`
+
+#### **✅ Create a New Category**
+- **Method:** `POST`
+- **URL:** `http://localhost:5000/api/categories`
+- **Body (JSON):**
+```json
+{
+    "name": "Smartphones"
+}
+```
+
+#### **✅ Update Category**
+- **Method:** `PUT`
+- **URL:** `http://localhost:5000/api/categories/1`
+- **Body (JSON):**
+```json
+{
+    "name": "Updated Smartphones"
+}
+```
+
+#### **✅ Delete Category**
+- **Method:** `DELETE`
+- **URL:** `http://localhost:5000/api/categories/1`
+
+---
+
+## **3️⃣ Products API (CRUD)**
+### **📌 Base URL:** `http://localhost:5000/api/products`
+#### **✅ Get All Products**
+- **Method:** `GET`
+- **URL:** `http://localhost:5000/api/products`
+
+#### **✅ Get Product by ID**
+- **Method:** `GET`
+- **URL:** `http://localhost:5000/api/products/1`
+
+#### **✅ Create a New Product**
+- **Method:** `POST`
+- **URL:** `http://localhost:5000/api/products`
+- **Body (JSON):**
+```json
+{
+    "name": "iPhone 14",
+    "description": "Apple latest iPhone",
+    "price": 999.99,
+    "stock": 50,
+    "category_id": 1,
+    "image_url": "https://example.com/iphone14.jpg"
+}
+```
+
+#### **✅ Update Product**
+- **Method:** `PUT`
+- **URL:** `http://localhost:5000/api/products/1`
+- **Body (JSON):**
+```json
+{
+    "name": "iPhone 14 Pro",
+    "description": "Updated Apple iPhone 14 Pro",
+    "price": 1099.99,
+    "stock": 40
+}
+```
+
+#### **✅ Delete Product**
+- **Method:** `DELETE`
+- **URL:** `http://localhost:5000/api/products/1`
+
+---
+
+## **4️⃣ Cart API (CRUD)**
+### **📌 Base URL:** `http://localhost:5000/api/cart`
+#### **✅ Get All Cart Items**
+- **Method:** `GET`
+- **URL:** `http://localhost:5000/api/cart`
+
+#### **✅ Get Cart Item by ID**
+- **Method:** `GET`
+- **URL:** `http://localhost:5000/api/cart/1`
+
+#### **✅ Add Product to Cart**
+- **Method:** `POST`
+- **URL:** `http://localhost:5000/api/cart`
+- **Body (JSON):**
+```json
+{
+    "user_id": 1,
+    "product_id": 2,
+    "quantity": 2
+}
+```
+
+#### **✅ Update Cart Item**
+- **Method:** `PUT`
+- **URL:** `http://localhost:5000/api/cart/1`
+- **Body (JSON):**
+```json
+{
+    "quantity": 3
+}
+```
+
+#### **✅ Remove Cart Item**
+- **Method:** `DELETE`
+- **URL:** `http://localhost:5000/api/cart/1`
+
+---
+
+## **5️⃣ Orders API (CRUD)**
+### **📌 Base URL:** `http://localhost:5000/api/orders`
+#### **✅ Get All Orders**
+- **Method:** `GET`
+- **URL:** `http://localhost:5000/api/orders`
+
+#### **✅ Get Order by ID**
+- **Method:** `GET`
+- **URL:** `http://localhost:5000/api/orders/1`
+
+#### **✅ Create an Order**
+- **Method:** `POST`
+- **URL:** `http://localhost:5000/api/orders`
+- **Body (JSON):**
+```json
+{
+    "user_id": 1,
+    "total_price": 1999.99,
+    "status": "pending"
+}
+```
+
+#### **✅ Update Order Status**
+- **Method:** `PUT`
+- **URL:** `http://localhost:5000/api/orders/1`
+- **Body (JSON):**
+```json
+{
+    "status": "shipped"
+}
+```
+
+#### **✅ Delete Order**
+- **Method:** `DELETE`
+- **URL:** `http://localhost:5000/api/orders/1`
+
+---
+
+## **6️⃣ Order Items API (CRUD)**
+### **📌 Base URL:** `http://localhost:5000/api/order-items`
+#### **✅ Get All Order Items**
+- **Method:** `GET`
+- **URL:** `http://localhost:5000/api/order-items`
+
+#### **✅ Get Order Item by ID**
+- **Method:** `GET`
+- **URL:** `http://localhost:5000/api/order-items/1`
+
+#### **✅ Add Product to Order**
+- **Method:** `POST`
+- **URL:** `http://localhost:5000/api/order-items`
+- **Body (JSON):**
+```json
+{
+    "order_id": 1,
+    "product_id": 2,
+    "quantity": 1,
+    "price": 999.99
+}
+```
+
+#### **✅ Update Order Item**
+- **Method:** `PUT`
+- **URL:** `http://localhost:5000/api/order-items/1`
+- **Body (JSON):**
+```json
+{
+    "quantity": 2
+}
+```
+
+#### **✅ Remove Order Item**
+- **Method:** `DELETE`
+- **URL:** `http://localhost:5000/api/order-items/1`
+
+---
+
+## **7️⃣ Payments API (CRUD)**
+### **📌 Base URL:** `http://localhost:5000/api/payments`
+#### **✅ Get All Payments**
+- **Method:** `GET`
+- **URL:** `http://localhost:5000/api/payments`
+
+#### **✅ Get Payment by ID**
+- **Method:** `GET`
+- **URL:** `http://localhost:5000/api/payments/1`
+
+#### **✅ Create a Payment**
+- **Method:** `POST`
+- **URL:** `http://localhost:5000/api/payments`
+- **Body (JSON):**
+```json
+{
+    "user_id": 1,
+    "order_id": 2,
+    "amount": 999.99,
+    "payment_method": "credit_card",
+    "payment_status": "pending"
+}
+```
+
+#### **✅ Update Payment Status**
+- **Method:** `PUT`
+- **URL:** `http://localhost:5000/api/payments/1`
+- **Body (JSON):**
+```json
+{
+    "payment_status": "completed"
+}
+```
+
+#### **✅ Delete Payment**
+- **Method:** `DELETE`
+- **URL:** `http://localhost:5000/api/payments/1`
+
+---
+
+## **🎯 Final Summary**
+✅ **Step-by-step Postman testing guide** for all CRUD operations.  
+✅ **URLs & JSON bodies are 100% correct.**  
+✅ **Now you can test all API endpoints properly!** 🚀🎉
