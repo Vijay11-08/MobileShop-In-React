@@ -1,0 +1,47 @@
+/mobile-shop-frontend
+│── /public
+│── /src
+│   ├── /components
+│   │   ├── Navbar.js
+│   │   ├── Footer.js
+│   │   ├── ProductCard.js
+│   │   ├── CartItem.js
+│   │   ├── Loader.js
+│   ├── /pages
+│   │   ├── /user
+│   │   │   ├── Home.js
+│   │   │   ├── Products.js
+│   │   │   ├── ProductDetails.js
+│   │   │   ├── Cart.js
+│   │   │   ├── Checkout.js
+│   │   │   ├── Orders.js
+│   │   │   ├── Login.js
+│   │   │   ├── Register.js
+│   │   │   ├── Profile.js
+│   │   ├── /admin
+│   │   │   ├── Dashboard.js
+│   │   │   ├── ManageProducts.js
+│   │   │   ├── ManageOrders.js
+│   │   │   ├── ManageUsers.js
+│   │   │   ├── ManageCategories.js
+│   │   │   ├── Reports.js
+│   │   │   ├── AdminLogin.js
+│   ├── /context
+│   │   ├── AuthContext.js
+│   │   ├── CartContext.js
+│   ├── /services
+│   │   ├── api.js  (Axios instance)
+│   │   ├── authService.js
+│   │   ├── productService.js
+│   │   ├── cartService.js
+│   │   ├── orderService.js
+│   ├── /redux (If using Redux)
+│   │   ├── store.js
+│   │   ├── reducers.js
+│   │   ├── actions.js
+│   ├── App.js
+│   ├── index.js
+│   ├── routes.js
+│   ├── styles.css
+│── package.json
+│── .env
