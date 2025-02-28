@@ -133,5 +133,8 @@ We ❤️ contributions! Want to contribute?
 
 
 
-✨ Developed with ❤️ by **Vijay Otaradi** ,**Maharshi Nimbark** & **Jay Sankhaliya**🚀
+✨ Developed with ❤️ by
+**Vijay Otaradi**,
+**Maharshi Nimbark** & 
+**Jay Sankhaliya**🚀
 
