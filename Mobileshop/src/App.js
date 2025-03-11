@@ -3,8 +3,9 @@
 //import Lifecy from './Lifecy';
 //import Persionfulldemo from './Persionfulldemo';
 //import Person from './Person';
-
-import dasebord from './pages/admin/Dashboard';
+import NavbarPage from "./pages/user/Navbar";
+import Footer from "./pages/user/Footer";
+//import dasebord from './pages/admin/Dashboard';
 
 function App() {
   //const personInfo = `{firstName: "John", lastName: "Doe"}`;
@@ -12,6 +13,8 @@ function App() {
   //const personInfo = {firstName: "jay", lastName: "sankaliya"}
 return (
  <>
+ <NavbarPage />
+ <Footer />
   
 
   
