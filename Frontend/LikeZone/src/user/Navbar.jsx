@@ -2,28 +2,33 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  return (
-    <nav className="bg-blue-600 text-white p-4 shadow-lg">
-      <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-xl font-bold">Mobile Store</Link>
-        <ul className="flex space-x-6">
-          <li><Link to="/" className="hover:underline">Home</Link></li>
-          <li><Link to="/products" className="hover:underline">Shop</Link></li>
-          <li><Link to="/search" className="hover:underline">Search</Link></li>
-          <li><Link to="/cart" className="hover:underline">Cart</Link></li>
-          <li><Link to="/checkout" className="hover:underline">Checkout</Link></li>
-          <li><Link to="/orders" className="hover:underline">Orders</Link></li>
-          <li><Link to="/wishlist" className="hover:underline">Wishlist</Link></li>
-          <li><Link to="/reviews" className="hover:underline">Reviews</Link></li>
-          <li><Link to="/profile" className="hover:underline">Profile</Link></li>
-          <li><Link to="/support" className="hover:underline">Support</Link></li>
-          <li><Link to="/faq" className="hover:underline">FAQs</Link></li>
-          <li><Link to="/login" className="hover:underline">Login</Link></li>
-          <li><Link to="/register" className="hover:underline">Register</Link></li>
-        </ul>
-      </div>
+return (
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="container-fluid">
+            <Link to="/" className="navbar-brand">Mobile Store</Link>
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNav">
+                <ul className="navbar-nav">
+                    <li className="nav-item"><Link to="/" className="nav-link">Home</Link></li>
+                    <li className="nav-item"><Link to="/products" className="nav-link">Shop</Link></li>
+                    <li className="nav-item"><Link to="/search" className="nav-link">Search</Link></li>
+                    <li className="nav-item"><Link to="/cart" className="nav-link">Cart</Link></li>
+                    <li className="nav-item"><Link to="/checkout" className="nav-link">Checkout</Link></li>
+                    <li className="nav-item"><Link to="/orders" className="nav-link">Orders</Link></li>
+                    <li className="nav-item"><Link to="/wishlist" className="nav-link">Wishlist</Link></li>
+                    <li className="nav-item"><Link to="/reviews" className="nav-link">Reviews</Link></li>
+                    <li className="nav-item"><Link to="/profile" className="nav-link">Profile</Link></li>
+                    <li className="nav-item"><Link to="/support" className="nav-link">Support</Link></li>
+                    <li className="nav-item"><Link to="/faq" className="nav-link">FAQs</Link></li>
+                    <li className="nav-item"><Link to="/login" className="nav-link">Login</Link></li>
+                    <li className="nav-item"><Link to="/register" className="nav-link">Register</Link></li>
+                </ul>
+            </div>
+        </div>
     </nav>
-  );
+);
 };
 
 export default Navbar;
