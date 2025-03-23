@@ -1,5 +1,5 @@
 import React from "react";
-import "./repair.css";
+// import "./repair.css";
 
 const RepairHeader = () => (
   <header className="repair-header">

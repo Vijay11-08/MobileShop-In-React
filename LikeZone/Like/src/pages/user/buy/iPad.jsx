@@ -53,7 +53,7 @@ const ProductList = ({ products, selectedFilters }) => {
   );
 };
 
-const App = () => {
+const Ipad = () => {
   const [selectedFilters, setSelectedFilters] = useState([]);
 
   const handleFilterChange = (filter) => {
@@ -72,4 +72,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Ipad;

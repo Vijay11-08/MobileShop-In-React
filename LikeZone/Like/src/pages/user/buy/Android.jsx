@@ -58,7 +58,7 @@ const ProductList = ({ selectedFilters }) => {
   );
 };
 
-const App = () => {
+const Android = () => {
   const [selectedFilters, setSelectedFilters] = useState([]);
 
   return (
@@ -72,4 +72,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Android;

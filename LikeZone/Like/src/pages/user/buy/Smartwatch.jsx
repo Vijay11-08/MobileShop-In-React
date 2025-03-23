@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./SmartwatchShop.css"; // External CSS file for styling
+// import "./SmartwatchShop.css"; // External CSS file for styling
 
 const productsData = [
   { name: "Apple Watch", price: 399.99, image: "applewatch.jpg" },

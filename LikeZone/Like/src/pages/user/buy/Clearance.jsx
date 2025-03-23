@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./ClearanceDeals.css"; // External CSS file for styling
+// import "./ClearanceDeals.css"; // External CSS file for styling
 
 const productsData = [
   { id: 1, name: "Laptop", image: "laptop.jpg", title: "Discounted Laptop", price: "$499.99" },
