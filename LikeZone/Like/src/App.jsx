@@ -1,18 +1,14 @@
-import './App.css'
-import Dashboard from './pages/admin/Dashboard'
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import AdminRoutes from "./routes/AdminRoutes";
+import UserRoutes from "./routes/UserRoutes";
 
-
-function App() {
-
-
+const App = () => {
   return (
-    <>
-
-
-    <Dashboard />
-      
-    </>
-  )
-}
-
-export default App
+    <Routes>
+      <Route path="/admin/*" element={<AdminRoutes />} />
+      <Route path="/*" element={<UserRoutes />} />
+    </Routes>
+  );
+};
+export default App;
