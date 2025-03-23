@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import UserNavbar from "./components/UserNavbar";
+
 // import iPhone from "./pages/user/buy/iPhone";
 import Samsung from "./pages/user/buy/Samsung";
 import Android from "./pages/user/buy/Android";
