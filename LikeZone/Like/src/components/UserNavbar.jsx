@@ -1,10 +1,7 @@
 import React from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UserNavbar from "./components/UserNavbar";
-// import iPhone from "../src/pages/user/buy/iPhone";
+// import iPhone from "./pages/user/buy/iPhone";
 import Samsung from "./pages/user/buy/Samsung";
 import Android from "./pages/user/buy/Android";
 // import iPad from "./pages/user/buy/iPad";
