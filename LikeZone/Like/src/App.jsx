@@ -11,6 +11,7 @@ const App = () => {
       <main className="container">
         {/* Your Page Content Here */}
       </main>
+      {/* Add your Footer Here */}  
       <Footer />
     </div>
   );
