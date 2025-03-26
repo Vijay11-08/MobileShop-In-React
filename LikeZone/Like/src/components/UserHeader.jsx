@@ -72,6 +72,7 @@ const UserHeader = () => {
                 <Link className="nav-link text-dark" to="/cart">Cart</Link>
               </li>
             </ul>
+    
           </div>
         </div>
       </nav>

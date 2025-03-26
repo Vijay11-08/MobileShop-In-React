@@ -59,7 +59,7 @@ const RepairContainer = () => (
   </section>
 );
 
-const DeviceRepairServices = () => (
+const SellInBulk = () => (
   <div>
     <RepairHeader />
     <RepairContainer />
@@ -67,4 +67,4 @@ const DeviceRepairServices = () => (
   </div>
 );
 
-export default DeviceRepairServices;
+export default SellInBulk;

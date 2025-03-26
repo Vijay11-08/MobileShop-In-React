@@ -37,7 +37,7 @@ const FAQ = () => (
   </div>
 );
 
-const SellUsedPhones = () => {
+const SellPage = () => {
   return (
     <div className="container my-5">
       <h2 className="text-center">Sell Used Phones Online for Cash!</h2>
@@ -67,4 +67,4 @@ const SellUsedPhones = () => {
   );
 };
 
-export default SellUsedPhones;
+export default SellPage;
