@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import UserHeader from "../../../components/UserHeader";
+import UserFooter from "../../../components/UserFooter";
 
 const productsData = [
     { id: 1, name: "iPhone 15 Pro", price: "$999.99", image: "iphone15pro.jpg" },
@@ -57,12 +59,11 @@ const BuyIPhones = () => {
     const [selectedFilters, setSelectedFilters] = useState([]);
 
     return (
+        
         <div className="container">
-            <FilterSidebar selectedFilters={selectedFilters} setSelectedFilters={setSelectedFilters} />
-            <main className="main-content">
-                <h1>Buy iPhones</h1>
-                <ProductList selectedFilters={selectedFilters} />
-            </main>
+            <UserHeader/>
+           <h1>Buy IPhones</h1>
+            <UserFooter/>
         </div>
     );
 };

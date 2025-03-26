@@ -13,24 +13,21 @@ import SellUsedPhones from "../pages/user/SellPage";
 import DeviceRepairServices from "../pages/user/SellInBulk";
 import UserNavbar from "../components/UserNavbar";
 
-const App = () => {
-  return (
-    <Router>
-      <UserNavbar />
-      <Routes>
-        <Route path="/user/buy/iphone" element={<BuyIPhones />} />
-        <Route path="/user/buy/samsung" element={<BuySamsung />} />
-        <Route path="/user/buy/android" element={<Android />} />
-        <Route path="/user/buy/ipad" element={<Ipad />} />
-        <Route path="/user/buy/smartwatch" element={<SmartwatchShop />} />
-        <Route path="/user/buy/macbook" element={<MacBookShop />} />
-        <Route path="/user/buy/accessories" element={<BuyAccessories />} />
-        <Route path="/user/buy/clearance" element={<ClearanceDeals />} />
-        <Route path="/user/sell" element={<SellUsedPhones />} />
-        <Route path="/user/sell-in-bulk" element={<DeviceRepairServices />} />
-      </Routes>
-    </Router>
-  );
-};
+<Router basename="/user">
+  <Routes>
+    <Route path="/buy/iphone" element={<BuyIPhones />} />
+    <Route path="/buy/samsung" element={<BuySamsung />} />
+    <Route path="/buy/android" element={<Android />} />
+    <Route path="/buy/ipad" element={<Ipad />} />
+    <Route path="/buy/smartwatch" element={<SmartwatchShop />} />
+    <Route path="/buy/macbook" element={<MacBookShop />} />
+    <Route path="/buy/accessories" element={<BuyAccessories />} />
+    <Route path="/buy/clearance" element={<ClearanceDeals />} />
+    <Route path="/sell" element={<SellUsedPhones />} />
+    <Route path="/sell-in-bulk" element={<DeviceRepairServices />} />
+  </Routes>
+</Router>
+
+
 
 export default App;

@@ -1,16 +1,16 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import UserNavbar from "../src/components/UserNavbar";
 import Footer from "../src/components/Footer";
+import UserRoutes from "./routes/UserRoutes";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const App = () => {
   return (
     <div>
-      <UserNavbar />
-      <main className="container">
-        {/* Your Page Content Here */}
-      </main>
+      <Router>
+        <UserRoutes/>
+      </Router>
       <Footer />
     </div>
   );
