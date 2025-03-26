@@ -62,7 +62,11 @@ const BuyIPhones = () => {
         
         <div className="container">
             <UserHeader/>
-           <h1>Buy IPhones</h1>
+            <FilterSidebar selectedFilters={selectedFilters} setSelectedFilters={setSelectedFilters} />
+            <main className="main-content">
+                <h1>Buy iPhones</h1>
+                <ProductList selectedFilters={selectedFilters} />
+            </main>
             <UserFooter/>
         </div>
     );

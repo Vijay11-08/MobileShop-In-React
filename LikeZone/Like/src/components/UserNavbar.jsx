@@ -13,7 +13,11 @@ import SellUsedPhones from "../pages/user/SellPage";
 import DeviceRepairServices from "../pages/user/SellInBulk";
 import UserNavbar from "../components/UserNavbar";
 
+const App = () => {
+  return (
+    
 <Router basename="/user">
+<div>
   <Routes>
     <Route path="/buy/iphone" element={<BuyIPhones />} />
     <Route path="/buy/samsung" element={<BuySamsung />} />
@@ -26,8 +30,10 @@ import UserNavbar from "../components/UserNavbar";
     <Route path="/sell" element={<SellUsedPhones />} />
     <Route path="/sell-in-bulk" element={<DeviceRepairServices />} />
   </Routes>
+  </div>
 </Router>
-
+  );
+};
 
 
 export default App;
