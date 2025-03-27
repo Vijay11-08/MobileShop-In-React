@@ -2,11 +2,10 @@ const express = require("express");
 const router = express.Router();
 const categoryController = require("../controllers/categoryController");
 
-// Define routes for Category CRUD operations
-router.get("/categories", categoryController.getAllCategories); // get all categories
-router.get("/categories/:id", categoryController.getCategoryById); // get category
-router.post("/categories", categoryController.addCategory); // add category
-router.put("/categories/:id", categoryController.updateCategory); // update category
-router.delete("/categories/:id", categoryController.deleteCategory); // delete category
+router.get("/categories", categoryController.getAllCategories);
+router.get("/categories/:id", categoryController.getCategoryById);
+router.post("/categories", categoryController.addCategory);
+router.put("/categories/:id", categoryController.updateCategory);
+router.delete("/categories/:id", categoryController.deleteCategory);
 
 module.exports = router;

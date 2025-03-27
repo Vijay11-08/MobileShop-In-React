@@ -1,129 +1,112 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AdminCategories = () => {
-  const [categories, setCategories] = useState([]);
-  const [formData, setFormData] = useState({ name: "" });
-  const [editingId, setEditingId] = useState(null);
-  const [message, setMessage] = useState("");
+    const [categories, setCategories] = useState([]);
+    const [newCategory, setNewCategory] = useState("");
+    const [editCategory, setEditCategory] = useState({ id: null, name: "" });
 
-  // Fetch categories
-  useEffect(() => {
-    fetchCategories();
-  }, []);
+    // Fetch all categories
+    const fetchCategories = async () => {
+        try {
+            const res = await axios.get("http://localhost:5000/api/categories");
+            setCategories(res.data);
+        } catch (err) {
+            toast.error("Failed to load categories");
+        }
+    };
 
-  const fetchCategories = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/api/categories");
-      const data = await response.json();
-      setCategories(data);
-    } catch (error) {
-      setMessage(`Error: ${error.message}`);
-    }
-  };
+    useEffect(() => {
+        fetchCategories();
+    }, []);
 
-  // Handle form change
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+    // Add new category
+    const handleAddCategory = async () => {
+        if (!newCategory.trim()) return toast.error("Category name is required");
 
-  // Handle add & update category
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const method = editingId ? "PUT" : "POST";
-      const url = editingId
-        ? `http://localhost:5000/api/categories/${editingId}`
-        : "http://localhost:5000/api/categories";
+        try {
+            const res = await axios.post("http://localhost:5000/api/categories", { name: newCategory });
+            setCategories([...categories, res.data]);
+            setNewCategory("");
+            toast.success("Category added successfully");
+        } catch (err) {
+            toast.error(err.response?.data?.error || "Failed to add category");
+        }
+    };
 
-      const response = await fetch(url, {
-        method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+    // Handle edit input change
+    const handleEditChange = (e) => {
+        setEditCategory({ ...editCategory, name: e.target.value });
+    };
 
-      const data = await response.json();
-      if (response.ok) {
-        setMessage(editingId ? "Category updated!" : "Category added!");
-        setFormData({ name: "" });
-        setEditingId(null);
-        fetchCategories(); // Refresh the category list
-      } else {
-        setMessage(`Error: ${data.error}`);
-      }
-    } catch (error) {
-      setMessage(`Error: ${error.message}`);
-    }
-  };
+    // Update category
+    const handleUpdateCategory = async () => {
+        if (!editCategory.name.trim()) return toast.error("Category name cannot be empty");
 
-  // Handle delete category
-  const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this category?")) return;
+        try {
+            const res = await axios.put(`http://localhost:5000/api/categories/${editCategory.id}`, {
+                name: editCategory.name,
+            });
+            setCategories(categories.map((cat) => (cat.id === editCategory.id ? res.data : cat)));
+            setEditCategory({ id: null, name: "" });
+            toast.success("Category updated successfully");
+        } catch (err) {
+            toast.error(err.response?.data?.error || "Failed to update category");
+        }
+    };
 
-    try {
-      const response = await fetch(`http://localhost:5000/api/categories/${id}`, {
-        method: "DELETE",
-      });
+    // Delete category
+    const handleDeleteCategory = async (id) => {
+        if (!window.confirm("Are you sure you want to delete this category?")) return;
 
-      if (response.ok) {
-        setMessage("Category deleted!");
-        fetchCategories(); // Refresh categories
-      } else {
-        const data = await response.json();
-        setMessage(`Error: ${data.error}`);
-      }
-    } catch (error) {
-      setMessage(`Error: ${error.message}`);
-    }
-  };
+        try {
+            await axios.delete(`http://localhost:5000/api/categories/${id}`);
+            setCategories(categories.filter((cat) => cat.id !== id));
+            toast.success("Category deleted successfully");
+        } catch (err) {
+            toast.error("Failed to delete category");
+        }
+    };
 
-  // Handle edit category
-  const handleEdit = (category) => {
-    setFormData({ name: category.name });
-    setEditingId(category.id);
-  };
+    return (
+        <div className="container">
+            <h2>Admin - Manage Categories</h2>
 
-  return (
-    <div className="admin-categories">
-      <h2>📂 Manage Categories</h2>
-      {message && <p className="message">{message}</p>}
+            {/* Add Category */}
+            <div>
+                <input
+                    type="text"
+                    placeholder="New Category Name"
+                    value={newCategory}
+                    onChange={(e) => setNewCategory(e.target.value)}
+                />
+                <button onClick={handleAddCategory}>Add</button>
+            </div>
 
-      {/* Add/Edit Category Form */}
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder="Enter category name"
-          required
-        />
-        <button type="submit">{editingId ? "Update" : "Add"} Category</button>
-      </form>
-
-      {/* Categories List */}
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Category Name</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {categories.map((category) => (
-            <tr key={category.id}>
-              <td>{category.id}</td>
-              <td>{category.name}</td>
-              <td>
-                <button onClick={() => handleEdit(category)}>✏️ Edit</button>
-                <button onClick={() => handleDelete(category.id)}>🗑️ Delete</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+            {/* Category List */}
+            <ul>
+                {categories.map((cat) => (
+                    <li key={cat.id}>
+                        {editCategory.id === cat.id ? (
+                            <>
+                                <input type="text" value={editCategory.name} onChange={handleEditChange} />
+                                <button onClick={handleUpdateCategory}>Save</button>
+                                <button onClick={() => setEditCategory({ id: null, name: "" })}>Cancel</button>
+                            </>
+                        ) : (
+                            <>
+                                {cat.name}
+                                <button onClick={() => setEditCategory(cat)}>Edit</button>
+                                <button onClick={() => handleDeleteCategory(cat.id)}>Delete</button>
+                            </>
+                        )}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
 };
 
 export default AdminCategories;

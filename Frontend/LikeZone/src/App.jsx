@@ -1,5 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import './App.css';
+
+
+
 import UserHeader from "./components/UserHeader"; // Import Header
 import Home from "./pages/Home";
 import UserDashboard from "./pages/UserDashboard";
@@ -35,6 +39,7 @@ import AdminProducts from "./pages/admin/AdminProducts";
 import Register from "./pages/user/Register"; // Import Register component
 import ResetPassword from "./pages/user/ResetPassword";
 import ForgotPassword from "./pages/user/ForgotPassword";
+import AddProduct from "./pages/admin/AddProduct";
 function App() {
   return (
     <Router>
@@ -71,6 +76,7 @@ function App() {
         <Route path="/admin/categories" element={<AdminCategories />} />
         <Route path="/admin/users" element={<AdminUsers />} />
         <Route path="/admin/products" element={<AdminProducts />} />
+        <Route path="/admin/addproduct" element={<AddProduct />} />
 
 
       </Routes>
