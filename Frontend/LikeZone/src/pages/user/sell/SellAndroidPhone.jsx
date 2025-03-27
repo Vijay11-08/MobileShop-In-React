@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-const SellAccessories = () => {
+const SellAndroidPhone = () => {
   const [formData, setFormData] = useState({
-    name: "Accessory",
+    name: "Android Phone",
     description: "",
     price: "",
     stock: "",
-    category_id: 4, // Assuming category ID for Accessories is 4
+    category_id: 2, // Assuming category ID for Android Phones is 2
     image_url: "",
   });
 
@@ -30,13 +30,13 @@ const SellAccessories = () => {
 
       const data = await response.json();
       if (response.ok) {
-        setMessage("Accessory listed successfully!");
+        setMessage("Android phone listed successfully!");
         setFormData({
-          name: "Accessory",
+          name: "Android Phone",
           description: "",
           price: "",
           stock: "",
-          category_id: 4,
+          category_id: 2,
           image_url: "",
         });
       } else {
@@ -49,7 +49,7 @@ const SellAccessories = () => {
 
   return (
     <div className="sell-page">
-      <h2>🎧 Sell Your Accessories</h2>
+      <h2>📱 Sell Your Android Phone</h2>
       {message && <p className="message">{message}</p>}
       <form onSubmit={handleSubmit}>
         <label>Description:</label>
@@ -88,10 +88,10 @@ const SellAccessories = () => {
           required
         />
 
-        <button type="submit">List Accessory</button>
+        <button type="submit">List Android Phone</button>
       </form>
     </div>
   );
 };
 
-export default SellAccessories;
+export default SellAndroidPhone;

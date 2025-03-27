@@ -1,0 +1,42 @@
+.buy-page {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 600px;
+    margin: 10px auto;
+    background: #f8f8f8;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .phone-image {
+    width: 80px;
+    height: auto;
+    margin-right: 15px;
+    border-radius: 5px;
+  }
+  
+  .buy-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .buy-btn:hover {
+    background: #0056b3;
+  }
+  

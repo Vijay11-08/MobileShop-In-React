@@ -1,34 +1,50 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
 
 const BuyIpad = () => {
   const [ipads, setIpads] = useState([]);
-  
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    axios.get('/api/products?category=ipad')
-      .then(response => setIpads(response.data))
-      .catch(error => console.error('Error fetching iPads:', error));
+    fetch("http://localhost:5000/api/products") // Replace with your actual backend API URL
+      .then((response) => response.json())
+      .then((data) => {
+        // Filter only iPads (assuming 'category_id' or 'name' identifies iPads)
+        const ipadItems = data.filter((item) =>
+          item.name.toLowerCase().includes("ipad") || item.category_id === 6
+        );
+        setIpads(ipadItems);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching iPads:", error);
+        setLoading(false);
+      });
   }, []);
 
+  if (loading) {
+    return <p>Loading iPads...</p>;
+  }
+
   return (
-    <div className="container mt-4">
-      <h2 className="mb-4">Buy iPad</h2>
-      <div className="row">
-        {ipads.map(ipad => (
-          <div key={ipad.id} className="col-md-4 mb-4">
-            <div className="card">
-              <img src={ipad.image_url} className="card-img-top" alt={ipad.name} />
-              <div className="card-body">
-                <h5 className="card-title">{ipad.name}</h5>
-                <p className="card-text">{ipad.description}</p>
-                <p className="card-text"><strong>Price:</strong> ${ipad.price}</p>
-                <Link to={`/product/${ipad.id}`} className="btn btn-primary">View Details</Link>
+    <div className="buy-page">
+      <h2>📱 Buy iPad</h2>
+      <ul>
+        {ipads.length > 0 ? (
+          ipads.map((ipad) => (
+            <li key={ipad.id}>
+              <img src={ipad.image_url} alt={ipad.name} className="device-image" />
+              <div>
+                <h3>{ipad.name}</h3>
+                <p>{ipad.description}</p>
+                <strong>Price: {ipad.price}</strong>
               </div>
-            </div>
-          </div>
-        ))}
-      </div>
+              <button className="buy-btn">Buy Now</button>
+            </li>
+          ))
+        ) : (
+          <p>No iPads available.</p>
+        )}
+      </ul>
     </div>
   );
 };

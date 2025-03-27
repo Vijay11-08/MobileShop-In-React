@@ -1,39 +1,50 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 const BuyIphone = () => {
   const [iphones, setIphones] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch iPhone products from API
-    axios.get("/api/products?category=iphone")
-      .then(response => setIphones(response.data))
-      .catch(error => console.error("Error fetching iPhones:", error));
+    fetch("http://localhost:5000/api/products") // Replace with your actual backend API URL
+      .then((response) => response.json())
+      .then((data) => {
+        // Filter only iPhones (assuming 'category_id' or 'name' identifies iPhones)
+        const iphoneDevices = data.filter((phone) =>
+          phone.name.toLowerCase().includes("iphone") || phone.category_id === 1
+        );
+        setIphones(iphoneDevices);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching iPhones:", error);
+        setLoading(false);
+      });
   }, []);
 
+  if (loading) {
+    return <p>Loading iPhones...</p>;
+  }
+
   return (
-    <div className="container mt-4">
-      <h2 className="mb-3">Buy iPhone</h2>
-      <div className="row">
+    <div className="buy-page">
+      <h2>📱 Buy iPhones</h2>
+      <ul>
         {iphones.length > 0 ? (
           iphones.map((phone) => (
-            <div key={phone.id} className="col-md-4 mb-4">
-              <div className="card">
-                <img src={phone.image_url} className="card-img-top" alt={phone.name} />
-                <div className="card-body">
-                  <h5 className="card-title">{phone.name}</h5>
-                  <p className="card-text">{phone.description}</p>
-                  <h6 className="text-success">Price: ${phone.price}</h6>
-                  <Link to={`/product/${phone.id}`} className="btn btn-primary">View Details</Link>
-                </div>
+            <li key={phone.id}>
+              <img src={phone.image_url} alt={phone.name} className="phone-image" />
+              <div>
+                <h3>{phone.name}</h3>
+                <p>{phone.description}</p>
+                <strong>Price: {phone.price}</strong>
               </div>
-            </div>
+              <button className="buy-btn">Buy Now</button>
+            </li>
           ))
         ) : (
-          <p>No iPhones available at the moment.</p>
+          <p>No iPhones available.</p>
         )}
-      </div>
+      </ul>
     </div>
   );
 };

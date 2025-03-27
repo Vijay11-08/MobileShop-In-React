@@ -2,76 +2,93 @@ import React, { useState } from "react";
 
 const SellSamsung = () => {
   const [formData, setFormData] = useState({
-    model: "",
-    condition: "",
+    name: "Samsung",
+    description: "",
     price: "",
-    contact: "",
+    stock: "",
+    category_id: 2, // Assuming category ID for Samsung is 2
+    image_url: "",
   });
+
+  const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Samsung Phone Listed Successfully!");
-    console.log(formData);
+
+    try {
+      const response = await fetch("http://localhost:5000/api/products", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        setMessage("Samsung phone listed successfully!");
+        setFormData({
+          name: "Samsung",
+          description: "",
+          price: "",
+          stock: "",
+          category_id: 2,
+          image_url: "",
+        });
+      } else {
+        setMessage(`Error: ${data.error}`);
+      }
+    } catch (error) {
+      setMessage(`Error: ${error.message}`);
+    }
   };
 
   return (
-    <div className="container mt-5">
-      <h2>Sell Your Samsung Phone</h2>
+    <div className="sell-page">
+      <h2>📱 Sell Your Samsung Phone</h2>
+      {message && <p className="message">{message}</p>}
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label className="form-label">Samsung Model</label>
-          <input
-            type="text"
-            className="form-control"
-            name="model"
-            value={formData.model}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Condition</label>
-          <select
-            className="form-control"
-            name="condition"
-            value={formData.condition}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select Condition</option>
-            <option value="New">New</option>
-            <option value="Like New">Like New</option>
-            <option value="Used">Used</option>
-            <option value="Damaged">Damaged</option>
-          </select>
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Expected Price ($)</label>
-          <input
-            type="number"
-            className="form-control"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Contact Information</label>
-          <input
-            type="text"
-            className="form-control"
-            name="contact"
-            value={formData.contact}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <label>Description:</label>
+        <input
+          type="text"
+          name="description"
+          value={formData.description}
+          onChange={handleChange}
+          required
+        />
+
+        <label>Price:</label>
+        <input
+          type="number"
+          name="price"
+          value={formData.price}
+          onChange={handleChange}
+          required
+        />
+
+        <label>Stock:</label>
+        <input
+          type="number"
+          name="stock"
+          value={formData.stock}
+          onChange={handleChange}
+          required
+        />
+
+        <label>Image URL:</label>
+        <input
+          type="text"
+          name="image_url"
+          value={formData.image_url}
+          onChange={handleChange}
+          required
+        />
+
+        <button type="submit">List Samsung Phone</button>
       </form>
     </div>
   );
