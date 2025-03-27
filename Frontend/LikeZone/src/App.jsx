@@ -32,6 +32,9 @@ import AdminUsers from "./pages/admin/AdminUsers"; // Import component
 import AdminProducts from "./pages/admin/AdminProducts";
 
 
+import Register from "./pages/user/Register"; // Import Register component
+import ResetPassword from "./pages/user/ResetPassword";
+import ForgotPassword from "./pages/user/ForgotPassword";
 function App() {
   return (
     <Router>
@@ -42,6 +45,11 @@ function App() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/products" element={<ProductDetail />} />
         <Route path="/login" element={<Login />} />
+
+        <Route path="/register" element={<Register />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
+
 
         <Route path="/buy/android" element={<BuyAndroid />} />
         <Route path="/buy/iphone" element={<BuyIphone />} />

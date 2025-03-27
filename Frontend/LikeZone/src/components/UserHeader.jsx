@@ -1,13 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function UserHeader() {
   const navigate = useNavigate();
   const [isBuyOpen, setIsBuyOpen] = useState(false);
   const [isSellOpen, setIsSellOpen] = useState(false);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("user");
+    setUser(null);
     navigate("/login");
   };
 
@@ -56,15 +65,21 @@ function UserHeader() {
               <Link to="/sell/android">Sell Android</Link>
               <Link to="/sell/ipad">Sell iPad</Link>
               <Link to="/sell/smartwatch">Sell Smartwatch</Link>
-             
               <Link to="/sell/accessories">Sell Accessories</Link>
             </div>
           )}
         </div>
 
-        <button onClick={handleLogout} className="logout-btn">
-          Logout
-        </button>
+        {user ? (
+          <button onClick={handleLogout} className="logout-btn">
+            Logout
+          </button>
+        ) : (
+          <>
+            <Link to="/login" className="auth-btn">Login</Link>
+            <Link to="/register" className="auth-btn">Register</Link>
+          </>
+        )}
       </nav>
 
       {/* Styles */}
@@ -146,6 +161,20 @@ function UserHeader() {
 
         .logout-btn:hover {
           background: darkred;
+        }
+
+        .auth-btn {
+          background: #28a745;
+          color: white;
+          padding: 8px 15px;
+          border-radius: 5px;
+          text-decoration: none;
+          font-size: 16px;
+          transition: 0.3s;
+        }
+
+        .auth-btn:hover {
+          background: #218838;
         }
       `}</style>
     </header>
