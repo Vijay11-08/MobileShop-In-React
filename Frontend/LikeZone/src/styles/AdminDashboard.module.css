@@ -1,0 +1,51 @@
+.adminContainer {
+    padding: 20px;
+    background-color: #f8f9fa;
+    text-align: center;
+  }
+  
+  .adminContainer h1 {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  
+  .adminContainer p {
+    color: #555;
+    font-size: 18px;
+  }
+  
+  .adminList {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .adminList li {
+    background: #007bff;
+    color: #fff;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .adminList li:hover {
+    background: #0056b3;
+    cursor: pointer;
+  }
+  
+  .adminButton {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  
+  .adminButton:hover {
+    background-color: #218838;
+  }
+  

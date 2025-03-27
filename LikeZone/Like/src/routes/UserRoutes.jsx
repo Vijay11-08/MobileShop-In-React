@@ -17,7 +17,7 @@ import HowItWorks from "../pages/user/HowItWorks";
 const UserRoutes = () => {
   return (
     <UserLayout>
-      <Routes>
+      <Routes  basename="/user">
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/cart" element={<Cart />} />
