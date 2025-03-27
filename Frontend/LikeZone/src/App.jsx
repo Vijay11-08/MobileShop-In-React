@@ -40,6 +40,10 @@ import Register from "./pages/user/Register"; // Import Register component
 import ResetPassword from "./pages/user/ResetPassword";
 import ForgotPassword from "./pages/user/ForgotPassword";
 import AddProduct from "./pages/admin/AddProduct";
+
+import AdminOrderItems from "./pages/admin/AdminOrderItems";
+import AdminOrders from "./pages/admin/AdminOrders";
+import AdminPayments from "./pages/admin/AdminPayments";
 function App() {
   return (
     <Router>
@@ -77,6 +81,10 @@ function App() {
         <Route path="/admin/users" element={<AdminUsers />} />
         <Route path="/admin/products" element={<AdminProducts />} />
         <Route path="/admin/addproduct" element={<AddProduct />} />
+        <Route path="/admin/addpayments" element={<AdminPayments />} />
+        <Route path="/admin/addorder" element={<AdminOrders />} />
+        <Route path="/admin/addorderitem" element={<AdminOrderItems />} />
+
 
 
       </Routes>
