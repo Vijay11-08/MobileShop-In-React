@@ -40,6 +40,41 @@ app.use("/api", orderItemRoutes); //  For OrderItems Routes
 app.use("/api", paymentRoutes);  // For Payments Routes
 
 const PORT = process.env.PORT || 5000;
+
+
+const nodemailer = require("nodemailer");
+
+app.post("/api/register", async (req, res) => {
+  const { name, email, password, role } = req.body;
+
+  // Simulate saving user (You can replace this with a database call)
+  console.log(`User Registered: Name=${name}, Email=${email}, Role=${role}`);
+
+  // Nodemailer Transporter Setup (Use your SMTP service)
+  let transporter = nodemailer.createTransport({
+    service: "gmail", // Or use "smtp.mailtrap.io" for testing
+    auth: {
+      user: "vijayotaradi118@gmail.com",
+      pass: "cyuu cdsj samu kapb",
+    },
+  });
+
+  // Email Options
+  let mailOptions = {
+    from: '"Your Website" <vijayotaradi118@gmail.com>',
+    to: email,
+    subject: "Registration Successful",
+    text: `Hello ${name},\n\nThank you for registering as a ${role}.\n\nBest Regards,\nYour Website Team`,
+  };
+
+  // Send Email
+  try {
+    await transporter.sendMail(mailOptions);
+    res.json({ message: "Registration successful! Check your email for confirmation." });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to send email." });
+  }
+});
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

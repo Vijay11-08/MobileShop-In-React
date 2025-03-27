@@ -8,6 +8,7 @@ const Register = () => {
     password: "",
     role: "customer",
   });
+
   const [message, setMessage] = useState("");
 
   // Handle Input Change
