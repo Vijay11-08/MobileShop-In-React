@@ -4,6 +4,8 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import Footer from "../src/components/Footer";
 import UserRoutes from "./routes/UserRoutes";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 const App = () => {
   return (
