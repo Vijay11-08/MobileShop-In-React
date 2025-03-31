@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "@material-tailwind/react": "^2.1.10",
+    "lucide-react": "^0.486.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^7.4.1"
+    "react-router-dom": "^7.4.1",
+    "react-tabs": "^6.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

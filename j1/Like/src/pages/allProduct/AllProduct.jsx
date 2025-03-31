@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router";
+import Layout from "../../components/layout/Layout";
 
 // productData 
 const productData = [
@@ -76,18 +77,19 @@ const productData = [
     }
 ]
 
-const HomePageProductCard = () => {
+const AllProduct = () => {
     const navigate = useNavigate();
     return (
-        <div className="mt-10">
+        <Layout>
+    <div className="py-8">
             {/* Heading  */}
             <div className="">
-                <h1 className=" text-center mb-5 text-2xl font-semibold">Bestselling Products</h1>
+                <h1 className=" text-center mb-5 text-2xl font-semibold">All Products</h1>
             </div>
 
             {/* main  */}
             <section className="text-gray-600 body-font">
-                <div className="container px-5 py-5 mx-auto">
+                <div className="container px-5 lg:px-0 py-5 mx-auto">
                     <div className="flex flex-wrap -m-4">
                         {productData.map((item, index) => {
                             const { image, title, price } = item
@@ -125,7 +127,8 @@ const HomePageProductCard = () => {
                 </div>
             </section>
         </div>
+        </Layout>
     );
 }
 
-export default HomePageProductCard;
+export default AllProduct;

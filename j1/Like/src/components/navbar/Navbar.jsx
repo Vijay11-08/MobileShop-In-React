@@ -22,7 +22,7 @@ const Navbar = () => {
 
             {/* User */}
             <li className="hover:text-gray-900 transition-colors">
-                <Link to={'/'}>Kamal</Link>
+                <Link to={'/userdashboard'}>Userl</Link>
             </li>
 
             {/* Cart */}
@@ -30,6 +30,9 @@ const Navbar = () => {
                 <Link to={'/cart'}>
                     Cart(0)
                 </Link>
+            </li>
+            <li>
+                <Link to={'/admindashboard'}>Admin</Link> {/* Admin Dashboard */}
             </li>
         </ul>
     );
