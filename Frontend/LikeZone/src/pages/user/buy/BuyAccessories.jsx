@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-
-
+import "../../../assets/Accessories.css"
 const productsData = [
-    { id: 1, name: 'AirPods', price: 199.99, image: "/images/i_buds.jpg" },
-    { id: 2, name: 'MagSafe Charger', price: 39.99, image: "/images/s_charger.jpg" },
-    { id: 3, name: 'Apple Watch', price: 399.99, image: "/images/o_charger.jpg" },
-    { id: 4, name: 'iPad Keyboard', price: 149.99, image: "/images/r_charger.jpg" },
+    { id: 1, name: 'AirPods', price: 199.99, image: "/images/i_buds.jpg" },  // Updated path
+    { id: 2, name: 'MagSafe Charger', price: 39.99, image: "/images/s_charger.jpg" },  // Updated path
+    { id: 3, name: 'Apple Watch', price: 399.99, image: "/images/o_charger.jpg" },  // Updated path
+    { id: 4, name: 'iPad Keyboard', price: 149.99, image: "/images/r_charger.jpg" },  // Updated path
 ];
 
 const BuyAccessories = () => {
