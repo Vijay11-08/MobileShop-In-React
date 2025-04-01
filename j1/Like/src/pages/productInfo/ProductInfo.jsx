@@ -91,7 +91,7 @@ const ProductInfo = () => {
                                     <h2 className="mb-2 text-lg font-bold text-gray-700 dark:text-gray-400">
                                         Description :
                                     </h2>
-                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa, explicabo enim ratione voluptatum at cupiditate delectus nemo dolorum officia esse beatae optio ut mollitia sit omnis, possimus nesciunt voluptas natus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident rerum ad rem reprehenderit qui, omnis nam distinctio, dignissimos nisi quidem aliquam, sapiente delectus commodi! Perspiciatis provident illo autem quidem ad! Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae reiciendis eum dolorum cupiditate </p>
+                                   <p>samsung.com</p>
                                 </div>
 
                                 <div className="mb-6 " />
