@@ -6,6 +6,6 @@ const registerController = require("../controllers/registerController");
 router.post("/register", registerController.upload.single("profilePic"), registerController.registerUser);
 
 // Email Verification Route
-router.get("/verify", registerController.verifyUser);
+
 
 module.exports = router;

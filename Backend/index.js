@@ -23,6 +23,9 @@ const orderItemRoutes = require("./src/routes/orderItemRoutes");
 
 // Payment Routes
 const paymentRoutes = require("./src/routes/paymentRoutes");
+// Import Routes
+const registerRoutes = require("./src/routes/registerRoutes");
+
 
 const app = express();
 
@@ -38,22 +41,16 @@ app.use("/api", categoryRoutes);  // For Category Routes
 app.use("/api", orderRoutes); //  For Order Routes
 app.use("/api", orderItemRoutes); //  For OrderItems Routes
 app.use("/api", paymentRoutes);  // For Payments Routes
+app.use("/api", registerRoutes); // for register Routes
 
 const PORT = process.env.PORT || 5000;
 
 require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use("/uploads", express.static("uploads"));
 
-// Import Routes
-const registerRoutes = require("./routes/registerRoutes");
-app.use("/api", registerRoutes);
 
 // Start Server
 app.listen(5000, () => console.log("Server running on port 5000"));

@@ -80,21 +80,21 @@ exports.verifyUser = async (req, res) => {
 exports.upload = upload;
 
 
-router.get("/verify", async (req, res) => {
-    try {
-        const { token } = req.query;
+// router.get("/verify", async (req, res) => {
+//     try {
+//         const { token } = req.query;
 
-        // Verify JWT token
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+//         // Verify JWT token
+//         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-        // Update user status in the database
-        await pool.query("UPDATE users SET is_verified = $1 WHERE email = $2", [true, decoded.email]);
+//         // Update user status in the database
+//         await pool.query("UPDATE users SET is_verified = $1 WHERE email = $2", [true, decoded.email]);
 
-        res.send("<h2>Email Verified Successfully! You can now log in.</h2>");
+//         res.send("<h2>Email Verified Successfully! You can now log in.</h2>");
 
-    } catch (error) {
-        res.status(400).send("<h2>Invalid or expired token!</h2>");
-    }
-});
+//     } catch (error) {
+//         res.status(400).send("<h2>Invalid or expired token!</h2>");
+//     }
+// });
 
-module.exports = router;
+// module.exports = router;
