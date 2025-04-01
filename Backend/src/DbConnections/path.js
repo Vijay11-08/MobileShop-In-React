@@ -35,7 +35,17 @@
 // DB_PORT=5432
 // JWT_SECRET=your_secret_key
 
-
+// CREATE TABLE users (
+//   id SERIAL PRIMARY KEY,
+//   fullname VARCHAR(255),
+//   email VARCHAR(255) UNIQUE,
+//   password TEXT,
+//   gender VARCHAR(10),
+//   mobile VARCHAR(15),
+//   profile_pic TEXT,
+//   token TEXT,
+//   verified BOOLEAN DEFAULT FALSE
+// );
 
 // CREATE TABLE users (
 //     id SERIAL PRIMARY KEY,
