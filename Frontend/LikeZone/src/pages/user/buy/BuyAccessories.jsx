@@ -1,52 +1,51 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from 'react';
+
+
+const productsData = [
+    { id: 1, name: 'AirPods', price: 199.99, image: "/images/i_buds.jpg" },
+    { id: 2, name: 'MagSafe Charger', price: 39.99, image: "/images/s_charger.jpg" },
+    { id: 3, name: 'Apple Watch', price: 399.99, image: "/images/o_charger.jpg" },
+    { id: 4, name: 'iPad Keyboard', price: 149.99, image: "/images/r_charger.jpg" },
+];
 
 const BuyAccessories = () => {
-  const [accessories, setAccessories] = useState([]);
-  const [loading, setLoading] = useState(true);
+    const [filters, setFilters] = useState([]);
 
-  useEffect(() => {
-    fetch("http://localhost:5000/api/products") // Replace with your actual backend API URL
-      .then((response) => response.json())
-      .then((data) => {
-        // Filter only Accessories (assuming 'category_id' or 'name' identifies Accessories)
-        const accessoryItems = data.filter((item) =>
-          item.name.toLowerCase().includes("accessory") || item.category_id === 4
-        );
-        setAccessories(accessoryItems);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching accessories:", error);
-        setLoading(false);
-      });
-  }, []);
+    const handleFilterChange = (event) => {
+        const { value, checked } = event.target;
+        setFilters(prevFilters => checked ? [...prevFilters, value] : prevFilters.filter(f => f !== value));
+    };
 
-  if (loading) {
-    return <p>Loading Accessories...</p>;
-  }
+    const filteredProducts = filters.length === 0 ? productsData : productsData.filter(p => filters.includes(p.name));
 
-  return (
-    <div className="buy-page">
-      <h2>🛍️ Buy Accessories</h2>
-      <ul>
-        {accessories.length > 0 ? (
-          accessories.map((accessory) => (
-            <li key={accessory.id}>
-              <img src={accessory.image_url} alt={accessory.name} className="device-image" />
-              <div>
-                <h3>{accessory.name}</h3>
-                <p>{accessory.description}</p>
-                <strong>Price: {accessory.price}</strong>
-              </div>
-              <button className="buy-btn">Buy Now</button>
-            </li>
-          ))
-        ) : (
-          <p>No accessories available.</p>
-        )}
-      </ul>
-    </div>
-  );
+    return (
+        <div className="container">
+            <aside className="sidebar">
+                <h2>Filters</h2>
+                <div className="filter-group">
+                    {productsData.map(product => (
+                        <label key={product.id}>
+                            <input type="checkbox" value={product.name} onChange={handleFilterChange} /> {product.name}
+                        </label>
+                    ))}
+                </div>
+            </aside>
+
+            <main className="main-content">
+                <h1>Buy Accessories</h1>
+                <div className="products-grid">
+                    {filteredProducts.map(product => (
+                        <div key={product.id} className="product">
+                            <img src={product.image} alt={product.name} />
+                            <h3>{product.name}</h3>
+                            <p className="price">From <span>${product.price.toFixed(2)}</span></p>
+                            <button>Buy Now</button>
+                        </div>
+                    ))}
+                </div>
+            </main>
+        </div>
+    );
 };
 
 export default BuyAccessories;

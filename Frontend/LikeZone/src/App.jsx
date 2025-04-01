@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css';
 
 
-
 import UserHeader from "./components/UserHeader"; // Import Header
 import Home from "./pages/Home";
 import UserDashboard from "./pages/UserDashboard";
@@ -55,6 +54,7 @@ function App() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/products" element={<ProductDetail />} />
         <Route path="/login" element={<Login />} />
+
 
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
