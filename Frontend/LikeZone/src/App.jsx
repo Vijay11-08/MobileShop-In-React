@@ -44,6 +44,7 @@ import AddProduct from "./pages/admin/AddProduct";
 import AdminOrderItems from "./pages/admin/AdminOrderItems";
 import AdminOrders from "./pages/admin/AdminOrders";
 import AdminPayments from "./pages/admin/AdminPayments";
+import Footer from "./components/Footer";
 function App() {
   return (
     <Router>
@@ -88,6 +89,7 @@ function App() {
 
 
       </Routes>
+    <Footer/>
     </Router>
   );
 }
