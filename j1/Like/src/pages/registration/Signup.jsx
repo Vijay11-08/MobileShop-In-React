@@ -1,15 +1,14 @@
-
 import { Link } from "react-router-dom";
 
 const Signup = () => {
     return (
-        <div className='flex justify-center items-center h-screen'>
-            {/* Login Form  */}
-            <div className="login_Form bg-pink-50 px-1 lg:px-8 py-6 border border-pink-100 rounded-xl shadow-md">
+        <div className='flex justify-center items-center h-screen bg-gray-50'>
+            {/* Signup Form  */}
+            <div className="signup_Form bg-white px-1 lg:px-8 py-6 border border-gray-200 rounded-xl shadow-md">
 
                 {/* Top Heading  */}
                 <div className="mb-5">
-                    <h2 className='text-center text-2xl font-bold text-pink-500 '>
+                    <h2 className='text-center text-2xl font-bold text-gray-800 '>
                         Signup
                     </h2>
                 </div>
@@ -19,7 +18,7 @@ const Signup = () => {
                     <input
                         type="text"
                         placeholder='Full Name'
-                        className='bg-pink-50 border border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-200'
+                        className='bg-white border border-gray-300 px-2 py-2 w-96 rounded-md outline-none placeholder-gray-400 focus:border-gray-400'
                     />
                 </div>
 
@@ -28,7 +27,7 @@ const Signup = () => {
                     <input
                         type="email"
                         placeholder='Email Address'
-                        className='bg-pink-50 border border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-200'
+                        className='bg-white border border-gray-300 px-2 py-2 w-96 rounded-md outline-none placeholder-gray-400 focus:border-gray-400'
                     />
                 </div>
 
@@ -37,7 +36,7 @@ const Signup = () => {
                     <input
                         type="password"
                         placeholder='Password'
-                        className='bg-pink-50 border border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-200'
+                        className='bg-white border border-gray-300 px-2 py-2 w-96 rounded-md outline-none placeholder-gray-400 focus:border-gray-400'
                     />
                 </div>
 
@@ -45,14 +44,14 @@ const Signup = () => {
                 <div className="mb-5">
                     <button
                         type='button'
-                        className='bg-pink-500 hover:bg-pink-600 w-full text-white text-center py-2 font-bold rounded-md '
+                        className='bg-gray-800 hover:bg-gray-900 w-full text-white text-center py-2 font-bold rounded-md transition-colors'
                     >
                         Signup
                     </button>
                 </div>
 
                 <div>
-                    <h2 className='text-black'>Have an account <Link className=' text-pink-500 font-bold' to={'/login'}>Login</Link></h2>
+                    <h2 className='text-gray-600'>Have an account <Link className='text-gray-800 font-bold hover:text-gray-900' to={'/login'}>Login</Link></h2>
                 </div>
 
             </div>

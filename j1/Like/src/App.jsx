@@ -22,6 +22,8 @@ import UpdateProductPage from './pages/admin/UpdateProductPage';
 
 
 
+
+
 export default function App() {
   return (
     <div>
@@ -39,7 +41,9 @@ export default function App() {
           <Route path="/admindashboard" element={<AdminDashboard />} />
           <Route path="/addproduct" element={<AddProductPage />} />
           <Route path="/updateproduct" element={<UpdateProductPage />} />
+        
 
+        
                      
           
 

@@ -11,7 +11,7 @@ const ProductInfo = () => {
                                 <div className="">
                                     <img
                                         className=" w-full lg:h-[39em] rounded-lg"
-                                        src="https://i.pinimg.com/736x/e4/61/f2/e461f2246b6ad93e2099d98780626396.jpg"
+                                        src="https://m.media-amazon.com/images/I/71rs4Aer71L._SX679_.jpg"
                                         alt=""
                                     />
                                 </div>
@@ -21,7 +21,7 @@ const ProductInfo = () => {
                             <div className="lg:pl-20">
                                 <div className="mb-6 ">
                                     <h2 className="max-w-xl mb-6 text-xl font-semibold leading-loose tracking-wide text-gray-700 md:text-2xl dark:text-gray-300">
-                                        Intel® Core™ i5-12600HX Processor (18M Cache, up to 4.60 GHz)
+                                    Samsung Galaxy S25 Ultra 5G AI Smartphone (Titanium Gray, 12GB RAM, 512GB Storage), 200MP Camera, S Pen Included, Long Battery Life (18M Cache, up to 4.60 GHz)
                                     </h2>
                                     <div className="flex flex-wrap items-center mb-6">
                                         <ul className="flex mb-4 mr-2 lg:mb-0">

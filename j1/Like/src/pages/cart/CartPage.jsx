@@ -4,39 +4,39 @@ import { Trash } from 'lucide-react'
 const products = [
     {
         id: 1,
-        name: 'Nike Air Force 1 07 LV8',
+        name: 'Samsung Galaxy S25 Ultra 5G AI Smartphone (Titanium Gray, 12GB RAM, 512GB Storage), 200MP Camera, S Pen Included, Long Battery Life',
         href: '#',
-        price: '₹47,199',
+        price: '₹1,47,199',
         originalPrice: '₹48,900',
         discount: '5% Off',
         color: 'Orange',
         size: '8 UK',
         imageSrc:
-            'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/54a510de-a406-41b2-8d62-7f8c587c9a7e/air-force-1-07-lv8-shoes-9KwrSk.png',
+            'https://m.media-amazon.com/images/I/71rs4Aer71L._SX679_.jpg',
     },
     {
         id: 2,
-        name: 'Nike Blazer Low 77 SE',
+        name: 'Samsung Galaxy Watch6 Classic Bluetooth (43mm, Silver, Compatible with Android only) | Introducing BP & ECG Features',
         href: '#',
-        price: '₹1,549',
+        price: '₹1,01,549',
         originalPrice: '₹2,499',
         discount: '38% off',
         color: 'White',
         leadTime: '3-4 weeks',
         size: '8 UK',
         imageSrc:
-            'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/e48d6035-bd8a-4747-9fa1-04ea596bb074/blazer-low-77-se-shoes-0w2HHV.png',
+            'https://m.media-amazon.com/images/I/71hg6m6m50L._SX679_.jpg',
     },
     {
         id: 3,
-        name: 'Nike Air Max 90',
+        name: 'iPhone 16 Pro Max 1 TB: 5G Mobile Phone with Camera Control, 4K 120 fps Dolby Vision and a Huge Leap in Battery Life. Works with AirPods; Black Titanium',
         href: '#',
-        price: '₹2219 ',
+        price: '₹1,20,999 ',
         originalPrice: '₹999',
         discount: '78% off',
         color: 'Black',
         imageSrc:
-            'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/fd17b420-b388-4c8a-aaaa-e0a98ddf175f/dunk-high-retro-shoe-DdRmMZ.png',
+            'https://m.media-amazon.com/images/I/619oqSJVY5L._SX679_.jpg',
     },
 ]
 
