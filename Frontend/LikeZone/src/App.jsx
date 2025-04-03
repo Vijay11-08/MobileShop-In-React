@@ -26,7 +26,7 @@ import BuyAccessories from "./pages/user/buy/BuyAccessories"; // Import the comp
 import BuySmartwatch from "./pages/user/buy/BuySmartwatch"; // Import the component
 import BuyIpad from "./pages/user/buy/BuyIpad"; // Import the component
 import BuyMacbook from "./pages/user/buy/BuyMacbook"; // Import the component
-
+import Cart from "./pages/user/buy/Cart"; // Import the component
 
 import SelliPhone from "./pages/user/sell/SelliPhone"; // Import the component
 import SellSamsung from "./pages/user/sell/SellSamsung"; // Import the component
@@ -74,6 +74,7 @@ function App() {
         <Route path="/buy/smartwatch" element={<BuySmartwatch />} />
         <Route path="/buy/ipad" element={<BuyIpad />} />
         <Route path="/buy/macbook" element={<BuyMacbook />} />
+        <Route path="/buy/cart" element={<Cart />} />
 
 
         <Route path="/sell/iphone" element={<SelliPhone />} />
@@ -100,7 +101,7 @@ function App() {
         <Route path="/Other/sellpages" element={<SellUsedPhones />} />
 
       </Routes>
-      
+
     <Footer/>
     </Router>
   );

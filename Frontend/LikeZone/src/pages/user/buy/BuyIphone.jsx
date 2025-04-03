@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import "../../../assets/Accessories.css";
 
-
-
 const iphones = [
   { name: "iPhone 15 Pro", price: "$999.99", image: "iphone15.jpeg" },
   { name: "iPhone 12", price: "$799.99", image: "iphone15.jpeg" },
@@ -11,7 +9,7 @@ const iphones = [
   { name: "iPhone 15", price: "$799.99", image: "i_phone.jpg" },
 ];
 
-const BuyIphone = () => {
+const BuyIphone = ({ addToCart }) => {
   const [selectedFilters, setSelectedFilters] = useState([]);
 
   const handleFilterChange = (event) => {
@@ -44,6 +42,7 @@ const BuyIphone = () => {
           ))}
         </div>
       </aside>
+
       <main className="main-content">
         <h1>Buy iPhones</h1>
         <div className="products-grid">
@@ -52,7 +51,7 @@ const BuyIphone = () => {
               <img src={`/Image/${phone.image}`} alt={phone.name} />
               <h3>{phone.name}</h3>
               <p className="price">From <span>{phone.price}</span></p>
-              <button>Buy Now</button>
+              <button onClick={() => addToCart(phone)}>Add to Cart</button>
             </div>
           ))}
         </div>
@@ -62,4 +61,3 @@ const BuyIphone = () => {
 };
 
 export default BuyIphone;
-

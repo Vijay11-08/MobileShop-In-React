@@ -22,7 +22,7 @@ function UserHeader() {
     setUser(null);
     navigate("/login");
   };
-
+  
   return (
     <header className="header">
       <div className="logo">
@@ -33,6 +33,8 @@ function UserHeader() {
         <Link to="/user">Dashboard</Link>
         <Link to="/checkout">Checkout</Link>
         <Link to="/products">Products</Link>
+        <Link to="/buy/cart">Cart  </Link>
+
 
 
 
@@ -110,98 +112,130 @@ function UserHeader() {
 
       {/* Styles */}
       <style>{`
-        .header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 15px 30px;
-          background: #333;
-          color: white;
-          border-bottom: 3px solid #ff6600;
-        }
-        
-        .logo h1 {
-          margin: 0;
-          font-size: 24px;
-        }
+        /* Header Styling */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: #333;
+    color: white;
+    border-bottom: 3px solid #ff6600;
+}
 
-        .nav-links {
-          display: flex;
-          align-items: center;
-          gap: 20px;
-        }
+/* Logo */
+.logo h1 {
+    margin: 0;
+    font-size: 24px;
+    color: white;
+}
 
-        .nav-links a, .dropbtn {
-          text-decoration: none;
-          color: white;
-          font-size: 16px;
-          padding: 10px 15px;
-          transition: 0.3s;
-          cursor: pointer;
-        }
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
 
-        .nav-links a:hover, .dropbtn:hover {
-          background: #ff6600;
-          border-radius: 5px;
-        }
+.nav-links a, 
+.dropbtn {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    padding: 10px 15px;
+    transition: 0.3s;
+    cursor: pointer;
+    border-radius: 5px;
+}
 
-        .dropdown {
-          position: relative;
-        }
+.nav-links a:hover, 
+.dropbtn:hover {
+    background: #ff6600;
+}
 
-        .dropdown-content {
-          position: absolute;
-          top: 40px;
-          left: 0;
-          background: white;
-          border: 1px solid #ccc;
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-          display: flex;
-          flex-direction: column;
-          min-width: 160px;
-          border-radius: 5px;
-        }
+/* Dropdown */
+.dropdown {
+    position: relative;
+}
 
-        .dropdown-content a {
-          color: black;
-          padding: 10px;
-          text-decoration: none;
-          display: block;
-          transition: 0.3s;
-        }
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none;
+    flex-direction: column;
+    min-width: 180px;
+    border-radius: 5px;
+    z-index: 1000;
+}
 
-        .dropdown-content a:hover {
-          background: #ff6600;
-          color: white;
-        }
+.dropdown:hover .dropdown-content {
+    display: flex;
+}
 
-        .logout-btn {
-          background: red;
-          color: white;
-          padding: 8px 15px;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-          font-size: 16px;
-        }
+.dropdown-content a {
+    color: black;
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+    transition: 0.3s;
+}
 
-        .logout-btn:hover {
-          background: darkred;
-        }
+.dropdown-content a:hover {
+    background: #ff6600;
+    color: white;
+}
 
-        .auth-btn {
-          background: #28a745;
-          color: white;
-          padding: 8px 15px;
-          border-radius: 5px;
-          text-decoration: none;
-          font-size: 16px;
-          transition: 0.3s;
-        }
+/* Buttons */
+.logout-btn {
+    background: red;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
 
-        .auth-btn:hover {
-          background: #218838;
-        }
+.logout-btn:hover {
+    background: darkred;
+}
+
+.auth-btn {
+    background: #28a745;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.auth-btn:hover {
+    background: #218838;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .dropdown {
+        text-align: center;
+    }
+}
+
       `}</style>
     </header>
   );
