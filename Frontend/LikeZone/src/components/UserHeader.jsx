@@ -5,6 +5,9 @@ function UserHeader() {
   const navigate = useNavigate();
   const [isBuyOpen, setIsBuyOpen] = useState(false);
   const [isSellOpen, setIsSellOpen] = useState(false);
+  const [isMoreOpen, setIsMoreOpen] = useState(false);
+
+  
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -30,6 +33,8 @@ function UserHeader() {
         <Link to="/user">Dashboard</Link>
         <Link to="/checkout">Checkout</Link>
         <Link to="/products">Products</Link>
+
+
 
         {/* Buy Dropdown */}
         <div 
@@ -69,6 +74,27 @@ function UserHeader() {
             </div>
           )}
         </div>
+
+ {/* More Dropdown */}
+ <div 
+          className="dropdown"
+          onMouseEnter={() => setIsMoreOpen(true)}
+          onMouseLeave={() => setIsMoreOpen(false)}
+        >
+          <button className="dropbtn">More ▼</button>
+          {isMoreOpen && (
+            <div className="dropdown-content">
+           
+              <Link to="/Other/sellpages">SellUsedPhones</Link>
+              <Link to="/Other/howitworks">HowItWorks</Link>
+              <Link to="/Other/contactus">ContactUs</Link>
+              <Link to="/Other/aboutus">AboutUs</Link>
+              <Link to="/Other/faqs">FAQs</Link>
+             
+            </div>
+          )}
+        </div>
+
 
         {user ? (
           <button onClick={handleLogout} className="logout-btn">

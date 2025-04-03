@@ -13,6 +13,12 @@ import BuyPage from "./pages/user/buy/BuyPage";
 import SellPage from "./pages/user/sell/SellPage";
 
 
+import SellUsedPhones from "./pages/user/Other/SellUsedPhones";
+import HowItWorks from "./pages/user/Other/HowItWorks";
+import AboutUs from "./pages/user/Other/AboutUs";
+import ContactUs from "./pages/user/Other/ContactUs";
+import FAQs from "./pages/user/Other/FAQs";
+
 import BuyAndroid from "./pages/user/buy/BuyAndroid"; // Import BuyAndroid component
 import BuyIphone from "./pages/user/buy/BuyIphone"; // Import BuyIphone component
 import BuySamsung from "./pages/user/buy/BuySamsung"; // Import BuySamsung component
@@ -87,8 +93,14 @@ function App() {
         <Route path="/admin/addorderitem" element={<AdminOrderItems />} />
 
 
+        <Route path="/Other/faqs" element={<FAQs />} />
+        <Route path="/Other/aboutus" element={<AboutUs />} />
+        <Route path="/Other/contactus" element={<ContactUs />} />
+        <Route path="/Other/howitworks" element={<HowItWorks />} />
+        <Route path="/Other/sellpages" element={<SellUsedPhones />} />
 
       </Routes>
+      
     <Footer/>
     </Router>
   );

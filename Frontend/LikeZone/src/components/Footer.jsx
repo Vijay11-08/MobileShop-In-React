@@ -1,59 +1,45 @@
-import React from 'react';
+import React from "react";
+import "../assets/Footer.css"; // Import the CSS file
 
-function Footer() {
-  return (<>
-    <footer>
-       <div class="footer-container">
-     <div class="newsletter">
-         <h3>Enter Email For Deals!</h3>
-         <p>Get offers and updates right from your inbox</p>
-         <input type="email" class="newsletter-input" placeholder="Enter your email"/>
-     </div>
-     <div class="footer-links">
-         <div class="column">
-             <h4>SERVICES</h4>
-             <ul>
-                 <li><a href="#">In-Store</a></li>
-                 <li><a href="#">Gift Cards</a></li>
-                 <li><a href="#">Repair & Tech</a></li>
-                 <li><a href="#">Trade-In</a></li>
-                 <li><a href="#">All Access</a></li>
-                 <li><a href="#">FAQ</a></li>
-             </ul>
-         </div>
-         <div class="column">
-             <h4>COMPANY</h4>
-             <ul>
-                 <li><a href="#">About Us</a></li>
-                 <li><a href="#">Careers</a></li>
-                 <li><a href="#">Contact Us</a></li>
-                 <li><a href="#">Store Locations</a></li>
-             </ul>
-         </div>
-         <div class="column">
-             <h4>INFORMATION</h4>
-             <ul>
-                 <li><a href="#">Blog</a></li>
-                 <li><a href="#">FAQs</a></li>
-                 <li><a href="#">Privacy Policy</a></li>
-                 <li><a href="#">Terms & Conditions</a></li>
-             </ul>
-         </div>
-         <div class="social-icons">
-             <h4>Follow Us</h4>
-             <div class="icons">
-                 <ul class="social-icons-container">
-                     <li><a href="#" class="fa fa-facebook social-icons"></a></li>
-                     <li><a href="#" class="fa fa-twitter social-icons"></a></li>
-                     <li><a href="https://www.linkedin.com/in/vijay-otaradi-678427266/" class="fa fa-linkedin social-icons"></a></li>
-                     <li><a href="https://www.instagram.com/like_zone_mobile_shop/" class="fa fa-instagram social-icons"></a></li>
-                 </ul>
-             </div>
-         </div>
-     </div>
- </div>
+const Footer = () => {
+  return (
+    <footer className="footer">
+      <div className="container">
+        <div className="footer-top">
+          <div className="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+
+          <div className="footer-section">
+            <h3>Contact Us</h3>
+            <p>Email: support@example.com</p>
+            <p>Phone: +91 98765 43210</p>
+            <p>Address: 123 Street, City, Country</p>
+          </div>
+
+          <div className="footer-section">
+            <h3>Follow Us</h3>
+            <div className="social-icons">
+              <a href="#"><i className="fab fa-facebook"></i></a>
+              <a href="#"><i className="fab fa-twitter"></i></a>
+              <a href="#"><i className="fab fa-instagram"></i></a>
+              <a href="#"><i className="fab fa-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div className="footer-bottom">
+          <p>© 2025 Your Company. All rights reserved.</p>
+        </div>
+      </div>
     </footer>
-    </>
   );
-}
+};
+
 export default Footer;
