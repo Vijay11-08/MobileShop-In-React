@@ -1,50 +1,59 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import "../../../assets/Accessories.css";
+
+const smartwatches = [
+  { name: "Apple Watch", price: "$399.99", image: "ise.jpg" },
+  { name: "Samsung Galaxy Watch", price: "$299.99", image: "ise.jpg" },
+  { name: "Garmin Watch", price: "$249.99", image: "ise.jpg" },
+  { name: "Fitbit", price: "$199.99", image: "ise.jpg" },
+];
 
 const BuySmartwatch = () => {
-  const [smartwatches, setSmartwatches] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [selectedFilters, setSelectedFilters] = useState([]);
 
-  useEffect(() => {
-    fetch("http://localhost:5000/api/products") // Replace with your actual backend API URL
-      .then((response) => response.json())
-      .then((data) => {
-        // Filter only Smartwatches (assuming 'category_id' or 'name' identifies Smartwatches)
-        const smartwatchItems = data.filter((item) =>
-          item.name.toLowerCase().includes("smartwatch") || item.category_id === 5
-        );
-        setSmartwatches(smartwatchItems);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching smartwatches:", error);
-        setLoading(false);
-      });
-  }, []);
+  const handleFilterChange = (event) => {
+    const value = event.target.value;
+    setSelectedFilters((prevFilters) =>
+      prevFilters.includes(value)
+        ? prevFilters.filter((filter) => filter !== value)
+        : [...prevFilters, value]
+    );
+  };
 
-  if (loading) {
-    return <p>Loading Smartwatches...</p>;
-  }
+  const filteredProducts = smartwatches.filter(
+    (watch) => selectedFilters.length === 0 || selectedFilters.includes(watch.name)
+  );
 
   return (
-    <div className="buy-page">
-      <h2>⌚ Buy Smartwatch</h2>
-      <ul>
-        {smartwatches.length > 0 ? (
-          smartwatches.map((watch) => (
-            <li key={watch.id}>
-              <img src={watch.image_url} alt={watch.name} className="device-image" />
-              <div>
-                <h3>{watch.name}</h3>
-                <p>{watch.description}</p>
-                <strong>Price: {watch.price}</strong>
-              </div>
-              <button className="buy-btn">Buy Now</button>
-            </li>
-          ))
-        ) : (
-          <p>No smartwatches available.</p>
-        )}
-      </ul>
+    <div className="container">
+      <aside className="sidebar">
+        <h2>Filters</h2>
+        <div className="filter-group">
+          {smartwatches.map((watch) => (
+            <label key={watch.name}>
+              <input
+                type="checkbox"
+                value={watch.name}
+                onChange={handleFilterChange}
+              />
+              {watch.name}
+            </label>
+          ))}
+        </div>
+      </aside>
+      <main className="main-content">
+        <h1>Buy Smartwatches</h1>
+        <div className="products-grid">
+          {filteredProducts.map((watch) => (
+            <div className="product" key={watch.name}>
+              <img src={`/Image/${watch.image}`} alt={watch.name} />
+              <h3>{watch.name}</h3>
+              <p className="price">From <span>{watch.price}</span></p>
+              <button>Buy Now</button>
+            </div>
+          ))}
+        </div>
+      </main>
     </div>
   );
 };

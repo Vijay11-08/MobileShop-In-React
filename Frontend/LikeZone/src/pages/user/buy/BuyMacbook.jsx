@@ -1,50 +1,59 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import "../../../assets/Accessories.css";
+
+
+const products = [
+  { id: 1, name: "MacBook Air", price: "$999.99", image: "./images/i_temp.png" },
+  { id: 2, name: "MacBook Pro", price: "$1299.99", image: "./images/i_temp.png" },
+  { id: 3, name: "MacBook Air", price: "$999.99", image: "./images/i_temp.png" },
+  { id: 4, name: "MacBook Pro", price: "$1299.99", image: "./images/i_temp.png" },
+  { id: 5, name: "MacBook Air", price: "$999.99", image: "./images/i_temp.png" },
+  { id: 6, name: "MacBook Pro", price: "$1299.99", image: "./images/i_temp.png" },
+  { id: 7, name: "MacBook Air", price: "$999.99", image: "./images/i_temp.png" },
+  { id: 8, name: "MacBook Pro", price: "$1299.99", image: "./images/i_temp.png" },
+  { id: 9, name: "MacBook Air", price: "$999.99", image: "./images/i_temp.png" },
+];
 
 const BuyMacbook = () => {
-  const [macbooks, setMacbooks] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [filters, setFilters] = useState([]);
 
-  useEffect(() => {
-    fetch("http://localhost:5000/api/products") // Replace with your actual backend API URL
-      .then((response) => response.json())
-      .then((data) => {
-        // Filter only MacBooks (assuming 'category_id' or 'name' identifies MacBooks)
-        const macbookItems = data.filter((item) =>
-          item.name.toLowerCase().includes("macbook") || item.category_id === 7
-        );
-        setMacbooks(macbookItems);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching MacBooks:", error);
-        setLoading(false);
-      });
-  }, []);
+  const handleFilterChange = (event) => {
+    const { value, checked } = event.target;
+    setFilters((prevFilters) =>
+      checked ? [...prevFilters, value] : prevFilters.filter((filter) => filter !== value)
+    );
+  };
 
-  if (loading) {
-    return <p>Loading MacBooks...</p>;
-  }
+  const filteredProducts = filters.length
+    ? products.filter((product) => filters.includes(product.name))
+    : products;
 
   return (
-    <div className="buy-page">
-      <h2>💻 Buy MacBook</h2>
-      <ul>
-        {macbooks.length > 0 ? (
-          macbooks.map((macbook) => (
-            <li key={macbook.id}>
-              <img src={macbook.image_url} alt={macbook.name} className="device-image" />
-              <div>
-                <h3>{macbook.name}</h3>
-                <p>{macbook.description}</p>
-                <strong>Price: {macbook.price}</strong>
-              </div>
-              <button className="buy-btn">Buy Now</button>
-            </li>
-          ))
-        ) : (
-          <p>No MacBooks available.</p>
-        )}
-      </ul>
+    <div className="container">
+      <aside className="sidebar">
+        <h2>Filters</h2>
+        <div className="filter-group">
+          <label>
+            <input type="checkbox" value="MacBook Air" onChange={handleFilterChange} /> MacBook Air
+          </label>
+          <label>
+            <input type="checkbox" value="MacBook Pro" onChange={handleFilterChange} /> MacBook Pro
+          </label>
+        </div>
+      </aside>
+      <main className="main-content">
+        <h1>Buy MacBooks</h1>
+        <div className="products-grid">
+          {filteredProducts.map((product) => (
+            <div key={product.id} className="product">
+              <img src={product.image} alt={product.name} />
+              <h3>{product.name}</h3>
+              <p className="price">From <span>{product.price}</span></p>
+              <button>Buy Now</button>
+            </div>
+          ))}
+        </div>
+      </main>
     </div>
   );
 };

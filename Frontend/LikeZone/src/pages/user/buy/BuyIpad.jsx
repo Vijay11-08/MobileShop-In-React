@@ -1,50 +1,58 @@
-import React, { useEffect, useState } from "react";
+
+import React, { useState } from "react";
+import "../../../assets/Accessories.css";
+
+const products = [
+  { name: "iPad Air", image: "/images/ipad_air.jpg", price: "$599.99" },
+  { name: "iPad Pro", image: "/images/ipad_pro.jpg", price: "$999.99" },
+  { name: "Samsung Galaxy Tab", image: "/images/galaxy_tab.jpg", price: "$499.99" },
+  { name: "Lenovo Tab", image: "/images/lenovo_tab.jpg", price: "$299.99" }
+];
 
 const BuyIpad = () => {
-  const [ipads, setIpads] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [filters, setFilters] = useState([]);
 
-  useEffect(() => {
-    fetch("http://localhost:5000/api/products") // Replace with your actual backend API URL
-      .then((response) => response.json())
-      .then((data) => {
-        // Filter only iPads (assuming 'category_id' or 'name' identifies iPads)
-        const ipadItems = data.filter((item) =>
-          item.name.toLowerCase().includes("ipad") || item.category_id === 6
-        );
-        setIpads(ipadItems);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching iPads:", error);
-        setLoading(false);
-      });
-  }, []);
+  const handleFilterChange = (event) => {
+    const { value, checked } = event.target;
+    setFilters((prev) =>
+      checked ? [...prev, value] : prev.filter((filter) => filter !== value)
+    );
+  };
 
-  if (loading) {
-    return <p>Loading iPads...</p>;
-  }
+  const filteredProducts = products.filter(
+    (product) => filters.length === 0 || filters.includes(product.name)
+  );
 
   return (
-    <div className="buy-page">
-      <h2>📱 Buy iPad</h2>
-      <ul>
-        {ipads.length > 0 ? (
-          ipads.map((ipad) => (
-            <li key={ipad.id}>
-              <img src={ipad.image_url} alt={ipad.name} className="device-image" />
-              <div>
-                <h3>{ipad.name}</h3>
-                <p>{ipad.description}</p>
-                <strong>Price: {ipad.price}</strong>
-              </div>
-              <button className="buy-btn">Buy Now</button>
-            </li>
-          ))
-        ) : (
-          <p>No iPads available.</p>
-        )}
-      </ul>
+    <div className="container">
+      <aside className="sidebar">
+        <h2>Filters</h2>
+        <div className="filter-group">
+          {products.map((product, index) => (
+            <label key={index}>
+              <input
+                type="checkbox"
+                value={product.name}
+                onChange={handleFilterChange}
+              />
+              {product.name}
+            </label>
+          ))}
+        </div>
+      </aside>
+      <main className="main-content">
+        <h1>Buy iPads & Tablets</h1>
+        <div className="products-grid">
+          {filteredProducts.map((product, index) => (
+            <div className="product" key={index}>
+              <img src={product.image} alt={product.name} />
+              <h3>{product.name}</h3>
+              <p className="price">From <span>{product.price}</span></p>
+              <button>Buy Now</button>
+            </div>
+          ))}
+        </div>
+      </main>
     </div>
   );
 };

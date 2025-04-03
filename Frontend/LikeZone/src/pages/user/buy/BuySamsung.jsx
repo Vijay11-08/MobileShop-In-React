@@ -1,52 +1,61 @@
-import React, { useEffect, useState } from "react";
+import "../../../assets/Accessories.css";
+import React, { useState } from "react";
+
+const samsungPhones = [
+  { name: "Samsung Galaxy S24", price: 999.99, image: "/images/s_phone.jpg" },
+  { name: "Samsung Galaxy Z Fold 5", price: 1799.99, image: "/images/s_phone.jpg" },
+  { name: "Samsung Galaxy Z Flip 5", price: 999.99, image: "/images/s_phone.jpg" },
+  { name: "Samsung Galaxy A54", price: 449.99, image: "/images/s_phone.jpg" },
+];
 
 const BuySamsung = () => {
-  const [samsungPhones, setSamsungPhones] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [selectedFilters, setSelectedFilters] = useState([]);
 
-  useEffect(() => {
-    fetch("http://localhost:5000/api/products") // Replace with your actual backend API URL
-      .then((response) => response.json())
-      .then((data) => {
-        // Filter only Samsung phones (assuming 'category_id' or 'name' identifies Samsung devices)
-        const samsungDevices = data.filter((phone) =>
-          phone.name.toLowerCase().includes("samsung") || phone.category_id === 2
-        );
-        setSamsungPhones(samsungDevices);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching Samsung phones:", error);
-        setLoading(false);
-      });
-  }, []);
+  const handleFilterChange = (event) => {
+    const { value, checked } = event.target;
+    setSelectedFilters((prevFilters) =>
+      checked ? [...prevFilters, value] : prevFilters.filter((filter) => filter !== value)
+    );
+  };
 
-  if (loading) {
-    return <p>Loading Samsung phones...</p>;
-  }
+  const filteredProducts = selectedFilters.length
+    ? samsungPhones.filter((phone) => selectedFilters.includes(phone.name))
+    : samsungPhones;
 
   return (
-    <div className="buy-page">
-      <h2>📱 Buy Samsung Phones</h2>
-      <ul>
-        {samsungPhones.length > 0 ? (
-          samsungPhones.map((phone) => (
-            <li key={phone.id}>
-              <img src={phone.image_url} alt={phone.name} className="phone-image" />
-              <div>
-                <h3>{phone.name}</h3>
-                <p>{phone.description}</p>
-                <strong>Price: {phone.price}</strong>
-              </div>
-              <button className="buy-btn">Buy Now</button>
-            </li>
-          ))
-        ) : (
-          <p>No Samsung phones available.</p>
-        )}
-      </ul>
+    <div className="container">
+      <aside className="sidebar">
+        <h2>Filters</h2>
+        <div className="filter-group">
+          {samsungPhones.map((phone) => (
+            <label key={phone.name}>
+              <input
+                type="checkbox"
+                value={phone.name}
+                onChange={handleFilterChange}
+              />
+              {phone.name}
+            </label>
+          ))}
+        </div>
+      </aside>
+
+      <main className="main-content">
+        <h1>Buy Samsung Phones</h1>
+        <div className="products-grid">
+          {filteredProducts.map((phone) => (
+            <div className="product" key={phone.name}>
+              <img src={phone.image} alt={phone.name} />
+              <h3>{phone.name}</h3>
+              <p className="price">From <span>${phone.price.toFixed(2)}</span></p>
+              <button>Buy Now</button>
+            </div>
+          ))}
+        </div>
+      </main>
     </div>
   );
 };
 
 export default BuySamsung;
+
