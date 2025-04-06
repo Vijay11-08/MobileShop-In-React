@@ -44,12 +44,18 @@ import AdminProducts from "./pages/admin/AdminProducts";
 import Register from "./pages/user/Register"; // Import Register component
 import ResetPassword from "./pages/user/ResetPassword";
 import ForgotPassword from "./pages/user/ForgotPassword";
-import AddProduct from "./pages/admin/AddProduct";
+
 
 import AdminOrderItems from "./pages/admin/AdminOrderItems";
 import AdminOrders from "./pages/admin/AdminOrders";
 import AdminPayments from "./pages/admin/AdminPayments";
 import Footer from "./components/Footer";
+
+import AddProduct from "./pages/admin/AddProduct";
+
+
+
+
 function App() {
   return (
     <Router>

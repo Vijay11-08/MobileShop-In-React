@@ -114,7 +114,7 @@ function UserHeader() {
       <style>{`
         /* Header Styling */
 .header {
-    display: flex;
+    display: contaxt;
     justify-content: space-between;
     align-items: center;
     padding: 15px 30px;
