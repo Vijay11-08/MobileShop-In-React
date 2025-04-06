@@ -49,91 +49,102 @@ const AddProduct = ({ categories = [] }) => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-black">
-  <form
-    onSubmit={handleSubmit}
-    className="w-full max-w-lg p-8 text-center bg-gray-900 border rounded-lg shadow-xl border-cyan-500"
-  >
-    <h2 className="mb-6 text-3xl font-extrabold text-cyan-400">Add Product</h2>
-
-    <div className="mb-4">
-      <label className="block mb-2 text-lg font-medium text-white">Name:</label>
-      <input
-        type="text"
-        name="Name"
-        value={formData.Name}
-        onChange={handleChange}
-        required
-        className="w-full p-3 text-white bg-gray-800 border rounded-lg border-cyan-500 focus:ring-2 focus:ring-fuchsia-500 focus:outline-none"
-      />
-    </div>
-
-    <div className="mb-4">
-      <label className="block mb-2 text-lg font-medium text-white">Description:</label>
-      <textarea
-        name="Description"
-        value={formData.Description}
-        onChange={handleChange}
-        required
-        className="w-full p-3 text-white bg-gray-800 border rounded-lg border-cyan-500 focus:ring-2 focus:ring-fuchsia-500 focus:outline-none"
-      ></textarea>
-    </div>
-
-    <div className="mb-4">
-      <label className="block mb-2 text-lg font-medium text-white">Price:</label>
-      <input
-        type="number"
-        name="Price"
-        step="0.01"
-        value={formData.Price}
-        onChange={handleChange}
-        required
-        className="w-full p-3 text-white bg-gray-800 border rounded-lg border-cyan-500 focus:ring-2 focus:ring-fuchsia-500 focus:outline-none"
-      />
-    </div>
-
-    <div className="mb-4">
-      <label className="block mb-2 text-lg font-medium text-white">Image:</label>
-      <input
-        type="file"
-        name="ImageUrl"
-        onChange={handleFileChange}
-        required
-        className="w-full p-3 text-white bg-gray-800 border rounded-lg cursor-pointer border-cyan-500 file:bg-cyan-500 file:text-white file:border-none file:px-4 file:py-2 hover:file:bg-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500 focus:outline-none"
-      />
-    </div>
-
-    <div className="mb-4">
-      <label className="block mb-2 text-lg font-medium text-white">Category:</label>
-      <select
-        name="CategoryId"
-        value={formData.CategoryId}
-        onChange={handleChange}
-        required
-        className="w-full p-3 text-white bg-gray-800 border rounded-lg border-cyan-500 focus:ring-2 focus:ring-fuchsia-500 focus:outline-none"
+    <div className="flex items-center justify-center min-h-screen bg-orange-100">
+      <form
+        onSubmit={handleSubmit}
+        className="w-full max-w-lg p-8 bg-white border border-orange-500 rounded-lg shadow-xl"
       >
-        <option value="">Select Category</option>
-        {categories.length > 0 ? (
-          categories.map((category) => (
-            <option key={category.CategoryId} value={category.CategoryId}>
-              {category.Name}
-            </option>
-          ))
-        ) : (
-          <option disabled>No categories available</option>
-        )}
-      </select>
+        <h2 className="mb-6 text-3xl font-bold text-center text-orange-600">
+          Add Product
+        </h2>
+
+        <div className="mb-4">
+          <label className="block mb-2 text-lg font-medium text-gray-700">
+            Name:
+          </label>
+          <input
+            type="text"
+            name="Name"
+            value={formData.Name}
+            onChange={handleChange}
+            required
+            className="w-full p-3 border border-orange-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block mb-2 text-lg font-medium text-gray-700">
+            Description:
+          </label>
+          <textarea
+            name="Description"
+            value={formData.Description}
+            onChange={handleChange}
+            required
+            className="w-full p-3 border border-orange-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none"
+          ></textarea>
+        </div>
+
+        <div className="mb-4">
+          <label className="block mb-2 text-lg font-medium text-gray-700">
+            Price:
+          </label>
+          <input
+            type="number"
+            name="Price"
+            step="0.01"
+            value={formData.Price}
+            onChange={handleChange}
+            required
+            className="w-full p-3 border border-orange-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block mb-2 text-lg font-medium text-gray-700">
+            Image:
+          </label>
+          <input
+            type="file"
+            name="ImageUrl"
+            onChange={handleFileChange}
+            required
+            className="w-full p-2 border border-orange-300 rounded-lg cursor-pointer focus:ring-2 focus:ring-orange-500 focus:outline-none"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block mb-2 text-lg font-medium text-gray-700">
+            Category:
+          </label>
+          <select
+            name="CategoryId"
+            value={formData.CategoryId}
+            onChange={handleChange}
+            required
+            className="w-full p-3 border border-orange-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none"
+          >
+            <option value="">Select Category</option>
+            {categories.length > 0 ? (
+              categories.map((category) => (
+                <option key={category.CategoryId} value={category.CategoryId}>
+                  {category.Name}
+                </option>
+              ))
+            ) : (
+              <option disabled>No categories available</option>
+            )}
+          </select>
+        </div>
+
+        <button
+          type="submit"
+          className="w-full px-6 py-3 text-lg font-bold text-white transition-all duration-300 ease-in-out transform bg-orange-500 rounded-lg shadow-lg hover:bg-orange-600 hover:scale-105 focus:ring-2 focus:ring-orange-500 focus:outline-none"
+        >
+          Add Product
+        </button>
+      </form>
     </div>
-
-    <button
-      type="submit"
-      className="w-full px-6 py-3 text-lg font-bold text-white transition-all duration-300 ease-in-out transform rounded-lg shadow-lg bg-fuchsia-500 hover:bg-cyan-400 hover:shadow-cyan-500 hover:scale-105 focus:ring-2 focus:ring-cyan-500 focus:outline-none"
-    >
-      Add Product
-    </button>
-  </form>
-</div>
-
   );
 };
 

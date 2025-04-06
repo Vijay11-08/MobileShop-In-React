@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Table, Button, Modal, Form } from "react-bootstrap";
 import { toast } from "react-toastify";
 
 const AdminOrderItems = () => {
-    const [orderItems, setOrderItems] = useState([]);
+    const [orderItems, setOrderItems] = useState([]); // Ensure it's initialized as an array
     const [showModal, setShowModal] = useState(false);
     const [editItem, setEditItem] = useState(null);
     
@@ -15,7 +14,13 @@ const AdminOrderItems = () => {
     const fetchOrderItems = async () => {
         try {
             const response = await axios.get("/api/order-items");
-            setOrderItems(response.data);
+            console.log("API Response:", response.data); // Debugging API response
+            if (Array.isArray(response.data)) {
+                setOrderItems(response.data); // Ensure it's an array
+            } else {
+                setOrderItems([]); // Set as empty array if response is incorrect
+                toast.error("Invalid response format for order items");
+            }
         } catch (error) {
             toast.error("Error fetching order items");
         }
@@ -50,65 +55,78 @@ const AdminOrderItems = () => {
     };
 
     return (
-        <div className="container mt-4">
-            <h2>Admin Order Items</h2>
-            <Table striped bordered hover>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Order ID</th>
-                        <th>Product ID</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {orderItems.map((item) => (
-                        <tr key={item.id}>
-                            <td>{item.id}</td>
-                            <td>{item.order_id}</td>
-                            <td>{item.product_id}</td>
-                            <td>{item.quantity}</td>
-                            <td>${item.price}</td>
-                            <td>
-                                <Button variant="warning" onClick={() => handleEdit(item)}>Edit</Button>{" "}
-                                <Button variant="danger" onClick={() => handleDelete(item.id)}>Delete</Button>
-                            </td>
+        <div className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md">
+            <h2 className="mb-4 text-2xl font-bold text-orange-600">Admin Order Items</h2>
+            <div className="overflow-x-auto">
+                <table className="w-full border border-collapse border-gray-300 shadow-lg">
+                    <thead>
+                        <tr className="text-white bg-orange-500">
+                            <th className="px-4 py-2 border border-gray-300">ID</th>
+                            <th className="px-4 py-2 border border-gray-300">Order ID</th>
+                            <th className="px-4 py-2 border border-gray-300">Product ID</th>
+                            <th className="px-4 py-2 border border-gray-300">Quantity</th>
+                            <th className="px-4 py-2 border border-gray-300">Price</th>
+                            <th className="px-4 py-2 border border-gray-300">Actions</th>
                         </tr>
-                    ))}
-                </tbody>
-            </Table>
+                    </thead>
+                    <tbody>
+                        {Array.isArray(orderItems) && orderItems.length > 0 ? (
+                            orderItems.map((item) => (
+                                <tr key={item.id} className="hover:bg-gray-100">
+                                    <td className="px-4 py-2 border border-gray-300">{item.id}</td>
+                                    <td className="px-4 py-2 border border-gray-300">{item.order_id}</td>
+                                    <td className="px-4 py-2 border border-gray-300">{item.product_id}</td>
+                                    <td className="px-4 py-2 border border-gray-300">{item.quantity}</td>
+                                    <td className="px-4 py-2 border border-gray-300">${item.price}</td>
+                                    <td className="px-4 py-2 border border-gray-300">
+                                        <button className="px-3 py-1 mr-2 text-white bg-yellow-500 rounded hover:bg-yellow-600" onClick={() => handleEdit(item)}>Edit</button>
+                                        <button className="px-3 py-1 text-white bg-red-500 rounded hover:bg-red-600" onClick={() => handleDelete(item.id)}>Delete</button>
+                                    </td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan="6" className="px-4 py-2 text-center border border-gray-300">
+                                    No order items found
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
 
-            <Modal show={showModal} onHide={() => setShowModal(false)}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Edit Order Item</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form>
-                        <Form.Group>
-                            <Form.Label>Quantity</Form.Label>
-                            <Form.Control
-                                type="number"
+            {showModal && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="p-6 bg-white rounded-lg shadow-lg w-96">
+                        <div className="flex items-center justify-between pb-2 border-b">
+                            <h3 className="text-lg font-bold">Edit Order Item</h3>
+                            <button className="text-gray-600 hover:text-gray-800" onClick={() => setShowModal(false)}>✖</button>
+                        </div>
+                        <div className="mt-4">
+                            <label className="block font-semibold text-gray-700">Quantity</label>
+                            <input 
+                                type="number" 
+                                className="w-full p-2 mt-1 border border-gray-300 rounded" 
                                 value={editItem?.quantity || ""}
                                 onChange={(e) => setEditItem({ ...editItem, quantity: e.target.value })}
                             />
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>Price</Form.Label>
-                            <Form.Control
-                                type="number"
+                        </div>
+                        <div className="mt-4">
+                            <label className="block font-semibold text-gray-700">Price</label>
+                            <input 
+                                type="number" 
+                                className="w-full p-2 mt-1 border border-gray-300 rounded" 
                                 value={editItem?.price || ""}
                                 onChange={(e) => setEditItem({ ...editItem, price: e.target.value })}
                             />
-                        </Form.Group>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShowModal(false)}>Cancel</Button>
-                    <Button variant="primary" onClick={handleSave}>Save Changes</Button>
-                </Modal.Footer>
-            </Modal>
+                        </div>
+                        <div className="flex justify-end mt-4">
+                            <button className="px-3 py-1 mr-2 text-white bg-gray-500 rounded hover:bg-gray-600" onClick={() => setShowModal(false)}>Cancel</button>
+                            <button className="px-3 py-1 text-white bg-blue-500 rounded hover:bg-blue-600" onClick={handleSave}>Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

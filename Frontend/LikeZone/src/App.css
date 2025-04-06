@@ -1,21 +1,21 @@
 /* Global Styles */
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #fffaf0;
-  color: #333;
+  font-family: 'Poppins', sans-serif;
+  background-color: #c8e5e5; /* Soft beige background */
+  color: #4a2c1d; /* Deep brown for better contrast */
   margin: 0;
   padding: 0;
 }
 
 /* Header */
 .header {
-  background-color: #ff8800;
+  background: linear-gradient(135deg, #ff9f00, #ff6200); /* Modern gradient */
   color: white;
   padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Navigation */
@@ -23,13 +23,13 @@ body {
   text-decoration: none;
   color: white;
   padding: 10px 15px;
-  font-weight: bold;
-  transition: background 0.3s;
+  font-weight: 600;
+  border-radius: 5px;
+  transition: background 0.3s ease-in-out;
 }
 
 .nav-links a:hover {
-  background-color: #cc7000;
-  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.2);
 }
 
 /* Dropdown Menu */
@@ -39,34 +39,35 @@ body {
 }
 
 .dropbtn {
-  background-color: #ff8800;
+  background: #ff7b00;
   color: white;
   padding: 10px 15px;
   border: none;
   cursor: pointer;
   font-weight: bold;
+  border-radius: 5px;
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: white;
-  min-width: 150px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  background: white;
+  min-width: 160px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1;
   border-radius: 5px;
 }
 
 .dropdown-content a {
-  color: #ff8800;
+  color: #ff6200;
   padding: 10px;
   display: block;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .dropdown-content a:hover {
-  background-color: #ffeed0;
+  background-color: #ffe2c6;
 }
 
 .dropdown:hover .dropdown-content {
@@ -75,10 +76,10 @@ body {
 
 /* Filters Sidebar */
 .sidebar {
-  background: #ffeed0;
+  background: #ffe6cc;
   padding: 15px;
   border-radius: 8px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 /* Product Cards */
@@ -87,7 +88,12 @@ body {
   padding: 15px;
   border-radius: 8px;
   text-align: center;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease-in-out;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
 }
 
 .product-card img {
@@ -97,17 +103,17 @@ body {
 
 .product-card h3 {
   font-size: 18px;
-  color: #ff8800;
+  color: #ff6200;
   margin-top: 10px;
 }
 
 .product-card p {
-  color: #cc7000;
+  color: #6a3300;
   font-weight: bold;
 }
 
 .product-card button {
-  background: #ff8800;
+  background: #ff7b00;
   color: white;
   border: none;
   padding: 10px 15px;
@@ -115,18 +121,18 @@ body {
   cursor: pointer;
   font-weight: bold;
   border-radius: 5px;
-  transition: background 0.3s;
+  transition: background 0.3s ease-in-out;
 }
 
 .product-card button:hover {
-  background: #cc7000;
+  background: #ff5200;
 }
 
 /* Footer */
 .footer {
-  background-color: #5a3c39;
- color: white;
- padding: 40px 0;
- font-family: Arial, sans-serif;
+  background: #7a4e2e; /* Deep brown for a warm finish */
+  color: white;
+  padding: 40px 0;
+  font-family: Arial, sans-serif;
+  text-align: center;
 }
-
