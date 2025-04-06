@@ -1,155 +1,132 @@
-
-/* General Reset */
-* {
+/* Global Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #fffaf0;
+  color: #333;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
-html, body {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  background-color: #f4f4f4;
-  color: #333;
-  font-size: 16px;
-  padding-top: 55px;
-}
-
-/* Header Styles */
+/* Header */
 .header {
+  background-color: #ff8800;
+  color: white;
+  padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
-  background: #007bff;
-  color: white;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.header .logo h1 {
-  font-size: 24px;
-  font-weight: bold;
-}
-
+/* Navigation */
 .nav-links a {
   text-decoration: none;
   color: white;
-  font-size: 16px;
   padding: 10px 15px;
-  margin-left: 20px;
-  border-radius: 5px;
+  font-weight: bold;
   transition: background 0.3s;
 }
 
 .nav-links a:hover {
-  background: #0056b3;
+  background-color: #cc7000;
+  border-radius: 5px;
 }
 
-/* Main Content Wrapper */
-.wrapper {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 80px 20px 20px;
+/* Dropdown Menu */
+.dropdown {
+  position: relative;
+  display: inline-block;
 }
 
-/* Button Styles */
-button {
-  padding: 12px 20px;
+.dropbtn {
+  background-color: #ff8800;
+  color: white;
+  padding: 10px 15px;
   border: none;
-  background: #007bff;
-  color: white;
-  font-size: 16px;
-  border-radius: 5px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 123, 255, 0.3);
+  font-weight: bold;
 }
 
-button:hover {
-  background: #0056b3;
-  box-shadow: 0 6px 12px rgba(0, 123, 255, 0.5);
-  transform: scale(1.05);
-}
-
-/* Form Styles */
-form {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
-  width: 100%;
-  max-width: 400px;
-  margin-top: 20px;
-}
-
-input, select, textarea {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 150px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1;
   border-radius: 5px;
-  background: #f9f9f9;
 }
 
-input:focus, select:focus, textarea:focus {
-  outline: none;
-  border-color: #007bff;
+.dropdown-content a {
+  color: #ff8800;
+  padding: 10px;
+  display: block;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-/* Footer Styles */
-.footer {
-  background: #007bff;
-  color: white;
+.dropdown-content a:hover {
+  background-color: #ffeed0;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Filters Sidebar */
+.sidebar {
+  background: #ffeed0;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Product Cards */
+.product-card {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
   text-align: center;
-  padding: 20px;
-  width: 100%;
-  margin-top: auto;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.footer .social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
+.product-card img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.product-card h3 {
+  font-size: 18px;
+  color: #ff8800;
   margin-top: 10px;
 }
 
-.footer .social-icons a {
+.product-card p {
+  color: #cc7000;
+  font-weight: bold;
+}
+
+.product-card button {
+  background: #ff8800;
   color: white;
-  font-size: 20px;
-  transition: color 0.3s;
+  border: none;
+  padding: 10px 15px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background 0.3s;
 }
 
-.footer .social-icons a:hover {
-  color: #ddd;
+.product-card button:hover {
+  background: #cc7000;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .header {
-    flex-direction: column;
-    text-align: center;
-    padding: 10px;
-  }
-
-  .wrapper {
-    padding: 100px 10px 10px;
-  }
-
-  form {
-    padding: 15px;
-  }
-
-  button {
-    font-size: 14px;
-  }
+/* Footer */
+.footer {
+  background-color: #5a3c39;
+ color: white;
+ padding: 40px 0;
+ font-family: Arial, sans-serif;
 }
 
