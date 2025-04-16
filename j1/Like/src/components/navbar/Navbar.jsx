@@ -16,9 +16,9 @@ const Navbar = () => {
             </li>
 
             {/* Signup */}
-            <li className="hover:text-gray-900 transition-colors">
+            {/* <li className="hover:text-gray-900 transition-colors">
                 <Link to={'/signup'}>Signup</Link>
-            </li>
+            </li> */}
 
           
 
@@ -28,12 +28,10 @@ const Navbar = () => {
                     Cart(0)
                 </Link>
             </li>
-            <li>
-                <Link to={'/admindashboard'}>Admin</Link> {/* Admin Dashboard */}
-            </li>
-            <li>
-                <Link to={'/review'}>Review</Link> {/* Admin Dashboard */}
-            </li>
+            {/* <li>
+                <Link to={'/admindashboard'}>Admin</Link>
+            </li> */}
+           
               {/* User */}
               <li className="hover:text-gray-900 transition-colors">
                 <Link to={'/userdashboard'}>Userl</Link>

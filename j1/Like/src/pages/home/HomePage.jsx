@@ -9,16 +9,13 @@ import HomePageProductCard from '../../components/productCard/ProductCard'
 
 export default function HomePage() {
   return (
-    <Layout>
-        <HeroSection />
-        <Category />
-        
-       
-        <br></br>                                                                      
-         <ProductCard />    
-         <Track /> 
-         <Testimonial/>
-       
-    </Layout>
+   <Layout>
+            <HeroSection/>
+            <Category/>
+            <HomePageProductCard/>
+            <Track/>
+            <Testimonial/>
+            {name}
+        </Layout>
   )
 }
