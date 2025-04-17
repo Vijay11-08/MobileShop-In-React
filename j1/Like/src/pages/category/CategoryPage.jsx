@@ -1,18 +1,21 @@
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import Layout from "../../components/layout/Layout";
 import { useContext, useEffect } from "react";
 import myContext from "../../context/myContext";
-import { useDispatch, useSelector } from "react-redux";
-import toast from "react-hot-toast";
-import { addToCart, deleteFromCart } from "../../redux/cartSlice";
 import Loader from "../../components/loader/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, deleteFromCart } from "../../redux/cartSlice";
+import toast from "react-hot-toast";
 
+const CategoryPage = () => {
+    const { categoryname } = useParams();
+    const context = useContext(myContext);
+    const { getAllProduct, loading } = context;
 
-const AllProduct = () => {
     const navigate = useNavigate();
 
-    const context = useContext(myContext);
-    const {loading,getAllProduct} = context;
+    const filterProduct = getAllProduct.filter((obj) => obj.category.includes(categoryname))
+
 
     const cartItems = useSelector((state) => state.cart);
     const dispatch = useDispatch();
@@ -35,20 +38,29 @@ const AllProduct = () => {
     }, [cartItems])
     return (
         <Layout>
-    <div className="py-8">
-            {/* Heading  */}
-            <div className="">
-                <h1 className=" text-center mb-5 text-2xl font-semibold">All Products</h1>
-            </div>
+            <div className="mt-10">
+                {/* Heading  */}
+                <div className="">
+                    <h1 className=" text-center mb-5 text-2xl font-semibold first-letter:uppercase">{categoryname}</h1>
+                </div>
 
-            {/* main  */}
-            <section className="text-gray-600 body-font">
-                <div className="container px-5 lg:px-0 py-5 mx-auto">
-                <div className="flex justify-center">
-                            {loading && <Loader/>}
+                {/* main  */}
+                {loading ?
+                    <>
+                        <div className="flex justify-center">
+                            <Loader />
                         </div>
-                    <div className="flex flex-wrap -m-4">
-                    {getAllProduct.map((item, index) => {
+                    </>
+                    :
+                    <>
+                        <section className="text-gray-600 body-font">
+                            <div className="container px-5 py-5 mx-auto ">
+                                <div className="flex flex-wrap -m-4  justify-center">
+                                    {filterProduct.length > 0
+                                        ?
+
+                                        <>
+                                             {filterProduct.map((item, index) => {
                             const { id, title, price, productImageUrl } = item
                             return (
                                 <div key={index} className="p-4 w-full md:w-1/4">
@@ -78,7 +90,7 @@ const AllProduct = () => {
                                                 <button
                                                     onClick={() => deleteCart(item)}
                                                     className=" bg-red-700 hover:bg-pink-600 w-full text-white py-[4px] rounded-lg font-bold">
-                                                    Delete From Cart
+                                                    Delete To Cart
                                                 </button>
 
                                                 : 
@@ -95,12 +107,25 @@ const AllProduct = () => {
                                 </div>
                             )
                         })}
-                    </div>
-                </div>
-            </section>
-        </div>
+                                        </>
+
+                                        :
+
+                                        <div>
+                                            <div className="flex justify-center">
+                                            <img className=" mb-2" src="https://cdn-icons-png.flaticon.com/128/2748/2748614.png" alt="" />
+                                            </div>
+                                            <h1 className=" text-black text-xl">No {categoryname} product found</h1>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </section>
+                    </>
+                }
+            </div>
         </Layout>
     );
 }
 
-export default AllProduct;
+export default CategoryPage;

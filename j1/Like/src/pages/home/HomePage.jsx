@@ -1,21 +1,20 @@
-import React from 'react'
-import Layout from '../../components/layout/Layout'
-import HeroSection from '../../components/heroSection/HeroSection'
-import Category from '../../components/category/Category'
-import ProductCard from '../../components/productCard/ProductCard'
-import Track from '../../components/track/Track'
-import Testimonial from '../../components/testimonial/Testimonial'
-import HomePageProductCard from '../../components/productCard/ProductCard'
+import Category from "../../components/category/Category";
+import HeroSection from "../../components/heroSection/HeroSection";
+import HomePageProductCard from "../../components/homePageProductCard/HomePageProductCard";
+import Layout from "../../components/layout/Layout";
+import Testimonial from "../../components/testimonial/Testimonial";
+import Track from "../../components/track/Track";
 
-export default function HomePage() {
-  return (
-   <Layout>
+const HomePage = () => {
+    return (
+        <Layout>
             <HeroSection/>
             <Category/>
             <HomePageProductCard/>
             <Track/>
             <Testimonial/>
-            {name}
         </Layout>
-  )
+    );
 }
+
+export default HomePage;

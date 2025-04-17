@@ -1,69 +1,53 @@
+import { useNavigate } from "react-router";
+
+// category 
 const category = [
     {
-        image: 'https://cdn-icons-png.flaticon.com/256/1034/1034155.png',
-        name: 'Smartphones'
-    },
-    {
-        image: 'https://cdn-icons-png.flaticon.com/256/10479/10479821.png',
-        name: 'Accessories'
-    },
-    {
-        image: 'https://cdn-icons-png.flaticon.com/256/3845/3845734.png',
-        name: 'Laptops'
-    },
-    {
-        image: 'https://cdn-icons-png.flaticon.com/256/2645/2645881.png',
-        name: 'Tablets'
-    },
-    {
-        image: 'https://cdn-icons-png.flaticon.com/256/2329/2329385.png',
-        name: 'Smartwatches'
-    },
-    {
-        image: 'https://cdn-icons-png.flaticon.com/256/2331/2331713.png',
-        name: 'Headphones'
+        image: 'https://cdn-icons-png.flaticon.com/256/7648/7648246.png',
+        name: 'mobile'
     },
     {
         image: 'https://cdn-icons-png.flaticon.com/256/12142/12142416.png',
-        name: 'Chargers'
+        name: 'laptop'
     },
-    {
-        image: 'https://cdn-icons-png.flaticon.com/256/2875/2875763.png',
-        name: 'Gaming'
-    }
-];
+
+]
 
 const Category = () => {
+    // naviaget 
+    const navigate = useNavigate();
     return (
-        <div className="mt-5 px-4">
-            {/* Responsive Grid for Large Screens */}
-            <div className="hidden lg:grid grid-cols-4 gap-6 justify-center">
-                {category.map((item, index) => (
-                    <div key={index} className="flex flex-col items-center">
-                        <div className="w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-gray-200 transition-all hover:bg-gray-300 cursor-pointer flex justify-center items-center shadow-md">
-                            <img className="w-12 h-12" src={item.image} alt={item.name} />
-                        </div>
-                        <h1 className="text-sm lg:text-lg text-center font-medium text-gray-700 uppercase mt-2">{item.name}</h1>
+        <div>
+            <div className="flex flex-col mt-5">
+                {/* main 1 */}
+                <div className="flex overflow-x-scroll lg:justify-center  hide-scroll-bar">
+                    {/* main 2  */}
+                    <div className="flex ">
+                        {/* category  */}
+                        {category.map((item, index) => {
+                            return (
+                                <div key={index} className="px-3 lg:px-10">
+                                    {/* Image  */}
+                                    <div onClick={() => navigate(`/category/${item.name}`)} className=" w-16 h-16 lg:w-24 lg:h-24 max-w-xs rounded-full  bg-pink-500 transition-all hover:bg-pink-400 cursor-pointer mb-1 " >
+                                        <div className="flex justify-center mb-12">
+                                            {/* Image tag  */}
+                                            <img src={item.image} alt="img" />
+                                        </div>
+                                    </div>
+
+                                    {/* Name Text  */}
+                                    <h1 className=' text-sm lg:text-lg text-center font-medium title-font first-letter:uppercase '>{item.name}</h1>
+                                </div>
+                            )
+                        })}
                     </div>
-                ))}
+                </div>
             </div>
 
-            {/* Scrollable Row for Mobile Screens */}
-            <div className="flex overflow-x-auto lg:hidden hide-scroll-bar space-x-4">
-                {category.map((item, index) => (
-                    <div key={index} className="flex flex-col items-center">
-                        <div className="w-16 h-16 rounded-full bg-gray-200 transition-all hover:bg-gray-300 cursor-pointer flex justify-center items-center shadow-md">
-                            <img className="w-10 h-10" src={item.image} alt={item.name} />
-                        </div>
-                        <h1 className="text-sm text-center font-medium text-gray-700 uppercase mt-1">{item.name}</h1>
-                    </div>
-                ))}
-            </div>
-
-            {/* Hide Scrollbar */}
-            <style dangerouslySetInnerHTML={{ __html: ".hide-scroll-bar { -ms-overflow-style: none; scrollbar-width: none; }.hide-scroll-bar::-webkit-scrollbar { display: none; }" }} />
+            {/* style  */}
+            <style dangerouslySetInnerHTML={{ __html: "\n.hide-scroll-bar {\n  -ms-overflow-style: none;\n  scrollbar-width: none;\n}\n.hide-scroll-bar::-webkit-scrollbar {\n  display: none;\n}\n" }} />
         </div>
     );
-};
+}
 
 export default Category;

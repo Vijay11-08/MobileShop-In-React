@@ -1,144 +1,182 @@
-import { Link } from "react-router-dom";
+import { Timestamp, addDoc, collection } from "firebase/firestore";
+import { useContext, useState } from "react";
+import myContext from "../../context/myContext";
+import toast from "react-hot-toast";
+import { fireDB } from "../../firebase/FirebaseConfig";
+import { useNavigate } from "react-router";
+import Loader from "../../components/loader/Loader";
 
-const AddProduct = () => {
-  return (
-    <div className='flex justify-center items-center h-screen bg-gray-50'>
-      <div className="bg-white px-8 py-6 border border-gray-200 rounded-xl shadow-md w-full max-w-2xl">
-        
-        {/* Header */}
-        <div className="mb-6">
-          <h2 className='text-2xl font-bold text-gray-800 text-center'>
-            Add New Product
-          </h2>
-          <Link to="/" className="text-gray-600 text-sm hover:text-gray-800 block mt-2 text-center">
-            ← Back to Products
-          </Link>
+const categoryList = [
+    {
+        name: 'mobile'
+    },
+    {
+        name: 'laptop'
+    },
+
+]
+
+const AddProductPage = () => {
+    const context = useContext(myContext);
+    const { loading, setLoading } = context;
+
+    // navigate 
+    const navigate = useNavigate();
+
+    // product state
+    const [product, setProduct] = useState({
+        title: "",
+        price: "",
+        productImageUrl: "",
+        category: "",
+        description: "",
+        quantity : 1,
+        time: Timestamp.now(),
+        date: new Date().toLocaleString(
+            "en-US",
+            {
+                month: "short",
+                day: "2-digit",
+                year: "numeric",
+            }
+        )
+    });
+
+
+    // Add Product Function
+    const addProductFunction = async () => {
+        if (product.title == "" || product.price == "" || product.productImageUrl == "" || product.category == "" || product.description == "") {
+            return toast.error("all fields are required")
+        }
+
+        setLoading(true);
+        try {
+            const productRef = collection(fireDB, 'products');
+            await addDoc(productRef, product)
+            toast.success("Add product successfully");
+            navigate('/admin-dashboard')
+            setLoading(false)
+        } catch (error) {
+            console.log(error);
+            setLoading(false)
+            toast.error("Add product failed");
+        }
+
+    }
+    return (
+        <div>
+            <div className='flex justify-center items-center h-screen'>
+                {loading && <Loader />}
+                {/* Login Form  */}
+                <div className="login_Form bg-pink-50 px-8 py-6 border border-pink-100 rounded-xl shadow-md">
+
+                    {/* Top Heading  */}
+                    <div className="mb-5">
+                        <h2 className='text-center text-2xl font-bold text-pink-500 '>
+                            Add Product
+                        </h2>
+                    </div>
+
+                    {/* Input One  */}
+                    <div className="mb-3">
+                        <input
+                            type="text"
+                            name="title"
+                            value={product.title}
+                            onChange={(e) => {
+                                setProduct({
+                                    ...product,
+                                    title: e.target.value
+                                })
+                            }}
+                            placeholder='Product Title'
+                            className='bg-pink-50 border text-pink-300 border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-300'
+                        />
+                    </div>
+
+                    {/* Input Two  */}
+                    <div className="mb-3">
+                        <input
+                            type="number"
+                            name="price"
+                            value={product.price}
+                            onChange={(e) => {
+                                setProduct({
+                                    ...product,
+                                    price: e.target.value
+                                })
+                            }}
+                            placeholder='Product Price'
+                            className='bg-pink-50 border text-pink-300 border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-300'
+                        />
+                    </div>
+
+                    {/* Input Three  */}
+                    <div className="mb-3">
+                        <input
+                            type="text"
+                            name="productImageUrl"
+                            value={product.productImageUrl}
+                            onChange={(e) => {
+                                setProduct({
+                                    ...product,
+                                    productImageUrl: e.target.value
+                                })
+                            }}
+                            placeholder='Product Image Url'
+                            className='bg-pink-50 border text-pink-300 border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-300'
+                        />
+                    </div>
+
+                    {/* Input Four  */}
+                    <div className="mb-3">
+                        <select
+                            value={product.category}
+                            onChange={(e) => {
+                                setProduct({
+                                    ...product,
+                                    category: e.target.value
+                                })
+                            }}
+                            className="w-full px-1 py-2 text-pink-300 bg-pink-50 border border-pink-200 rounded-md outline-none  ">
+                            <option disabled>Select Product Category</option>
+                            {categoryList.map((value, index) => {
+                                const { name } = value
+                                return (
+                                    <option className=" first-letter:uppercase" key={index} value={name}>{name}</option>
+                                )
+                            })}
+                        </select>
+                    </div>
+
+                    {/* Input Five  */}
+                    <div className="mb-3">
+                        <textarea
+                            value={product.description}
+                            onChange={(e) => {
+                                setProduct({
+                                    ...product,
+                                    description: e.target.value
+                                })
+                            }} name="description" placeholder="Product Description" rows="5" className=" w-full px-2 py-1 text-pink-300 bg-pink-50 border border-pink-200 rounded-md outline-none placeholder-pink-300 ">
+
+                        </textarea>
+                    </div>
+
+                    {/* Add Product Button  */}
+                    <div className="mb-3">
+                        <button
+                            onClick={addProductFunction}
+                            type='button'
+                            className='bg-pink-500 hover:bg-pink-600 w-full text-white text-center py-2 font-bold rounded-md '
+                        >
+                            Add Product
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
+    );
+}
 
-        {/* Product Form */}
-        <form className="space-y-4">
-          {/* Product Name */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Product Name
-            </label>
-            <input
-              type="text"
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-500 focus:border-gray-500 outline-none"
-            />
-          </div>
-
-          {/* Brand and Price */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Brand
-              </label>
-              <input
-                type="text"
-                required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-500 outline-none"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Price
-              </label>
-              <input
-                type="number"
-                required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-500 outline-none"
-              />
-            </div>
-          </div>
-
-          {/* Specifications */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Storage
-              </label>
-              <input
-                type="text"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-500 outline-none"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                RAM
-              </label>
-              <input
-                type="text"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-500 outline-none"
-              />
-            </div>
-          </div>
-
-          {/* Image URL */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Image URL
-            </label>
-            <input
-              type="url"
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-500 outline-none"
-            />
-          </div>
-
-          {/* Color and Discount */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Color
-              </label>
-              <input
-                type="text"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-500 outline-none"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Discount
-              </label>
-              <input
-                type="text"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-500 outline-none"
-              />
-            </div>
-          </div>
-
-          {/* Description */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Description
-            </label>
-            <textarea
-              rows="3"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-500 outline-none"
-            ></textarea>
-          </div>
-
-          {/* Buttons */}
-          <div className="flex gap-4 mt-6">
-            <button
-              type="submit"
-              className="w-full bg-gray-800 hover:bg-gray-900 text-white py-2 px-4 rounded-md transition-colors font-medium"
-            >
-              Add Product
-            </button>
-            <Link
-              to="/"
-              className="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 py-2 px-4 rounded-md text-center transition-colors font-medium"
-            >
-              Cancel
-            </Link>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
-};
-
-export default AddProduct;
+export default AddProductPage;
